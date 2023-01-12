@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import HomePage from "./components/HomePage";
 import LoginForm from "./components/LoginForm";
-import { Routes, Route } from "react-router-dom";
+import { Navigate, Routes, Route } from "react-router-dom";
 
 function App() {
   const adminUser = {
@@ -40,6 +40,7 @@ function App() {
   return (
     // <div className={`${error ? "vibrate-error transparent-red-screen" : ""}`}>
     <Routes>
+      <Route path="/" element={<Navigate to="/login" />} />
       <Route
         exact
         path="/login"
