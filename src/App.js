@@ -1,24 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react";
+import "./App.css";
+import HomePage from "./components/HomePage";
+import LoginForm from "./components/LoginForm";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
+  const adminUser = {
+    email: "chintudon123@gmail.com",
+    password: "chintu",
+  };
+
+  const [user, setUser] = useState({ email: "", password: "" });
+  const [error, setError] = useState();
+
+  const LoginUser = (details) => {
+    console.log(details);
+
+    if (
+      details.email === adminUser.email &&
+      details.password === adminUser.password
+    ) {
+      console.log("Successfully Logged in! Welcom to your future");
+      setUser({
+        email: details.email,
+        password: details.password,
+      });
+      setError("");
+    } else {
+      console.log("The details don't match");
+      setError("The details don't match");
+    }
+  };
+
+  const Logout = (details) => {
+    console.log(details);
+    setUser({ email: "", password: "" });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    // <div className={`${error ? "vibrate-error transparent-red-screen" : ""}`}>
+    <Routes>
+      <Route
+        exact
+        path="/login"
+        element={
+          <LoginForm LoginUser={LoginUser} error={error} setError={setError} />
+        }
+      />
+      <Route exact path="/profile" element={<HomePage user={user} />} />
+    </Routes>
+    // </div>
   );
 }
 
