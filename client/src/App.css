@@ -23,7 +23,7 @@ form {
 /* Company header */
 h3#company-header {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   color: #333;
   font-size: 34px;
   font-weight: bold;
@@ -49,6 +49,25 @@ input[type="password"] {
   border: 2px solid #ccc;
   border-radius: 4px;
   font-size: 18px;
+}
+
+/* Add css for the email and lock icon */
+label.label-text span.icon i {
+  font-size: 18px;
+  color: rgb(136, 132, 132);
+  pointer-events: none;
+  z-index: 2;
+}
+
+label.label-text input {
+  padding-left: 40px;
+}
+
+label.label-text span.icon i {
+  position: absolute;
+  padding-left: 14px;
+  padding-top: 49px;
+  transform: translateY(-50%);
 }
 
 /* Email and password text highligt */
@@ -95,6 +114,7 @@ input[type="submit"] {
 /* Login Hover Transition effect */
 input[type="submit"]:hover {
   transform: scale(1.01);
+  border-radius: 20px;
   background: linear-gradient(to right, #d4a115, #181a92);
 }
 

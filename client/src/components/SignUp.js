@@ -21,9 +21,16 @@ function SignUp() {
   return (
     <form className="signup-container">
       <link rel="stylesheet" href="signup.css"></link>
-
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      ></link>
       <h3>Sign Up</h3>
-      <label id="fname">First Name:</label>
+      <label className="label-text-signup" id="fname"></label>
+      <span className="icon">
+        <i class="fa-solid fa-user-doctor"></i>
+      </span>
       <input
         type="text"
         id="first-name"
@@ -32,10 +39,14 @@ function SignUp() {
           setRegFirstName(e.target.value);
         }}
         required
+        placeholder="First Name"
       />
       <br />
 
-      <label id="lname">Last Name:</label>
+      <label className="label-text-signup" id="lname"></label>
+      <span className="icon">
+        <i class="fa-solid fa-user-doctor"></i>
+      </span>
       <input
         type="text"
         id="last-name"
@@ -44,10 +55,14 @@ function SignUp() {
         onChange={(e) => {
           setRegLastName(e.target.value);
         }}
+        placeholder="Last Name"
       />
       <br />
 
-      <label id="emailiD">Email:</label>
+      <label className="label-text-signup" id="emailiD"></label>
+      <span className="icon">
+        <i className="fa fa-envelope" aria-hidden="true"></i>
+      </span>
       <input
         type="email"
         id="email"
@@ -56,10 +71,14 @@ function SignUp() {
         onChange={(e) => {
           setRegEmail(e.target.value);
         }}
+        placeholder="Email"
       />
       <br />
 
-      <label id="pass">Password:</label>
+      <label className="label-text-signup" id="pass"></label>
+      <span className="icon">
+        <i className="fa fa-lock"></i>
+      </span>
       <input
         type="password"
         id="password"
@@ -68,18 +87,23 @@ function SignUp() {
         onChange={(e) => {
           setPassword(e.target.value);
         }}
+        placeholder="Password"
       />
       <br />
 
-      <label id="conPassword">Confirm Password:</label>
+      <label className="label-text-signup" id="conPassword"></label>
+      <span className="icon">
+        <i className="fa fa-lock"></i>
+      </span>
       <input
         type="password"
         id="confirm-password"
         name="confirm-password"
         required
+        placeholder="Confirm Password"
       />
       <br />
-      <input id="submit" type="submit" value="Sign Up" onClick={register} />
+      <input id="submit" type="submit" value="Submit" onClick={register} />
     </form>
   );
 }

@@ -46,12 +46,19 @@ function LoginForm({ LoginUser, error, setError }) {
         <form onSubmit={submitHandler}>
           <div className="App">
             <link rel="stylesheet" href="App.css"></link>
+            <link
+              rel="stylesheet"
+              type="text/css"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+            ></link>
             <h3 type="company" id="company-header">
               Doctors Job
             </h3>
 
             <label className="label-text">
-              Email:
+              <span className="icon">
+                <i className="fa fa-envelope" aria-hidden="true"></i>
+              </span>
               <input
                 type="email"
                 id="email"
@@ -59,11 +66,14 @@ function LoginForm({ LoginUser, error, setError }) {
                 required
                 value={details.email}
                 onChange={handleChange}
+                placeholder="Email"
               />
             </label>
             <br />
             <label className="label-text">
-              Password:
+              <span className="icon">
+                <i className="fa fa-lock"></i>
+              </span>
               <input
                 type="password"
                 id="password"
@@ -71,9 +81,9 @@ function LoginForm({ LoginUser, error, setError }) {
                 required
                 value={details.password}
                 onChange={handleChange}
+                placeholder="Password"
               />
             </label>
-
             {/* {error !== "" ? <div className="errorValue">{error}</div> : ""} */}
             <br />
             <input
