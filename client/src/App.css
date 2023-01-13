@@ -1,0 +1,168 @@
+/* Form container */
+form {
+  width: 400px;
+  margin: 100px auto;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #ccc;
+  text-align: center;
+  opacity: 0.9;
+}
+
+/* Background Image */
+.login {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background-image: url("../background.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Company header */
+h3#company-header {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 34px;
+  font-weight: bold;
+}
+
+/* Input labels */
+label {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 5px;
+  display: block;
+  text-align: left;
+  font-weight: bold;
+}
+
+/* Input fields */
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 18px;
+}
+
+/* Email and password text highligt */
+.label-text.focused {
+  color: #4caf50;
+}
+
+/* Input hover color change*/
+input[type="email"],
+input[type="password"] {
+  transition: all 0.2s ease-in-out;
+}
+
+input[type="email"]:hover,
+input[type="password"]:hover {
+  transform: scale(1.01);
+  background-color: #b0e4b9;
+  border-radius: 20px;
+
+  border-color: #4caf50;
+}
+
+/* Error message */
+.errorValue {
+  margin-top: 10px;
+  color: red;
+  font-size: 18px;
+}
+
+/* Submit button */
+input[type="submit"] {
+  width: 100%;
+  color: white;
+  padding: 14px 20px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  background: linear-gradient(to right, #4caf50, #3e8e41);
+  transition: all 0.2s ease-in-out;
+}
+
+/* Login Hover Transition effect */
+input[type="submit"]:hover {
+  transform: scale(1.01);
+  background: linear-gradient(to right, #d4a115, #181a92);
+}
+
+/* Forgot password link */
+#forgot-password-container a {
+  text-align: right;
+  font-size: 18px;
+  color: #333;
+  margin-top: 10px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Login Hover Transition effect */
+#forgot-password-container:hover {
+  transform: scale(1.03);
+  color: rgb(224, 28, 214);
+}
+
+/* Sign up link */
+#signup-link {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 10px 15px;
+  font-weight: bold;
+  font-size: 20px;
+  color: #333;
+  text-decoration: none;
+  border-radius: 20px;
+  background: linear-gradient(to right, #4caf50, #ce08d8);
+  transition: all 0.2s ease-in-out;
+}
+
+/* Login Hover Transition effect */
+#signup-link:hover {
+  transform: scale(1.03);
+  background: linear-gradient(to right, #e34106, #06b7e3);
+}
+
+/* ----------------------------- */
+/* Error animation */
+.vibrate-error {
+  animation: vibrate 0.2s ease-in-out;
+  background-color: var(--error-color);
+}
+
+.transparent-red-screen {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(247, 12, 12, 0.3);
+}
+
+@keyframes vibrate {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-10px);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  75% {
+    transform: translateX(-10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

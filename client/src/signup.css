@@ -1,0 +1,76 @@
+body {
+  background-color: #333;
+}
+
+/* Sign Up container */
+.signup-container {
+  width: 400px;
+  margin: 100px auto;
+  padding: 20px;
+  background-color: #73a6e0;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #ccc;
+  text-align: center;
+  opacity: 0.9;
+}
+
+/* Sign Up header */
+h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 34px;
+  font-weight: bold;
+}
+
+/* Input labels */
+label {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 5px;
+  display: block;
+  text-align: left;
+  font-weight: bold;
+}
+
+/* Input fields */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 18px;
+}
+
+/* Input hover color change*/
+input[type="text"]:hover,
+input[type="email"]:hover,
+input[type="password"]:hover {
+  transform: scale(1.01);
+  background-color: #b0e4b9;
+  border-color: #4caf50;
+}
+
+/* Submit button */
+input[type="submit"] {
+  width: 100%;
+  color: white;
+  padding: 14px 20px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  background: linear-gradient(to right, #4caf50, #ce08d8);
+  transition: all 0.2s ease-in-out;
+}
+
+/* Sign up Hover Transition effect */
+input[type="submit"]:hover {
+  transform: scale(1.01);
+  background: linear-gradient(to right, #d4a115, #181a92);
+}
