@@ -1,0 +1,20 @@
+.signup-body {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background-color: #333;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Sign Up container */
+.signup-container {
+  width: 400px;
+  margin: 150px auto;
+  padding: 20px;
+  background-color: #73a6e0;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #ccc;
+  text-align: center;
+  opacity: 0.9;
+}

@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import "./signup.css";
-import HomePage from "./components/HomePage";
-import LoginForm from "./components/LoginForm";
+import "./components/profile/Profile.css";
+import "./components/navigationBar/NavBar.css";
+import "./components/signup/SignUp.css";
+import Profile from "./components/profile/Profile";
+import LoginForm from "./components/login/LoginForm";
 import { useNavigate, Navigate, Routes, Route } from "react-router-dom";
-import SignUp from "./components/SignUp";
+import SignUp from "./components/signup/SignUp";
 import Axios from "axios";
 
 function App() {
@@ -52,7 +54,11 @@ function App() {
           <LoginForm LoginUser={LoginUser} error={error} setError={setError} />
         }
       />
-      <Route exact path="/profile" element={<HomePage user={user} />} />
+      <Route
+        exact
+        path="/profile"
+        element={<Profile user={user} Logout={Logout} />}
+      />
       <Route exact path="/signup" element={<SignUp />} />
     </Routes>
     // </div>

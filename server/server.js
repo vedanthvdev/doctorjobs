@@ -1,6 +1,7 @@
 const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
+const PORT = 3000;
 
 const app = express();
 
@@ -47,6 +48,18 @@ app.post("/login", (req, res) => {
         res.send(result);
       } else {
         res.send({ message: "Wrong username/password" });
+      }
+    }
+  );
+});
+
+//Get all the jobs
+app.post("/getjobs", (req, res) => {
+  db.query(
+    'SELECT JSON_ARRAYAGG( JSON_OBJECT("title", j_title, "company", j_company, "location", j_location, "jobe_type", j_type, "apply_link", j_link)) FROM LoginSystem.jobs;',
+    (err, result) => {
+      if (result.length > 0) {
+        res.send(result);
       }
     }
   );

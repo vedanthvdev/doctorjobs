@@ -2,9 +2,9 @@
   "configurations": [
     {
       "type": "chrome",
-      "name": "http://localhost:3002",
+      "name": "http://localhost:3003",
       "request": "launch",
-      "url": "http://localhost:3002"
+      "url": "http://localhost:3003"
     }
   ]
 }

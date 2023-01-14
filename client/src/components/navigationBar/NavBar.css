@@ -1,0 +1,37 @@
+nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #0adde8;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  z-index: 1;
+  box-shadow: 0 0 40px rgb(190, 13, 13);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 0px;
+  padding: 5px 15px;
+}
+
+nav li {
+  margin: 100 10;
+  margin-right: 10px;
+  flex: 1 0 calc(8% - 30px);
+  margin: 0 8px 20px;
+  background-color: #cd345d;
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgb(149, 161, 14);
+}
+
+nav a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+}
