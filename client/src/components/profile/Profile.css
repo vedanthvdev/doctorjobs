@@ -2,9 +2,7 @@
   position: absolute;
   height: 100vh;
   width: 100vw;
-  /* background-color: #333; */
   background-image: url("../../../redplus.jpeg");
-  /* background-color: #38257d; */
   background-repeat: repeat-x 50;
 }
 
