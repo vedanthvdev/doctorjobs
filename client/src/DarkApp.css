@@ -1,0 +1,77 @@
+#Dark form {
+  background-color: #221f1f;
+  box-shadow: 0 0 40px rgb(245, 241, 241);
+}
+
+#Dark {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(0, 0, 0);
+}
+
+#Dark .login {
+  background-image: url("../Dbackground.jpg");
+}
+
+#Dark .switch label {
+  color: white;
+}
+
+#Dark h3 {
+  color: white;
+}
+
+#Dark input {
+  background-color: #494b4c;
+  color: rgb(255, 255, 255);
+  border: 2px solid rgb(20, 2, 2);
+}
+
+#Dark input[type="submit"] {
+  color: white;
+  background: linear-gradient(to right, #301f93, #91118f);
+}
+
+#Dark input[type="submit"]:hover {
+  background: linear-gradient(to right, #927212, #910d0d);
+}
+
+#Dark #signup-link {
+  color: white;
+  background: linear-gradient(to right, #301f93, #91118f);
+}
+
+#Dark #signup-link:hover {
+  background: linear-gradient(to right, #927212, #910d0d);
+}
+
+#Dark select {
+  background-color: #494b4c;
+  color: rgb(253, 249, 249);
+  border: 2px solid rgb(14, 13, 13);
+  opacity: 0.9;
+}
+
+#Dark input:hover,
+select:hover {
+  background-color: #064010;
+  border-color: #0f78c8;
+}
+
+#Dark select:hover {
+  background-color: #064010;
+  border-color: #0f78c8;
+}
+
+#Dark span.icon i {
+  color: white;
+}
+
+#Dark #forgot-password-container a {
+  color: white;
+}
+
+#Dark ::placeholder {
+  color: white;
+}

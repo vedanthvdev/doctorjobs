@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
+import { ToggleSlider } from "react-toggle-slider";
 
 function LoginForm({ LoginUser, error, setError }) {
   let navigate = useNavigate();
+
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   const [details, setDetails] = useState({ email: "", password: "" });
 
@@ -40,7 +43,7 @@ function LoginForm({ LoginUser, error, setError }) {
     <div className="login">
       <div className={`${error ? "vibrate-error transparent-red-screen" : ""}`}>
         <form onSubmit={submitHandler}>
-          <div className="App">
+          <div className="login-app">
             <link rel="stylesheet" href="App.css"></link>
             <link
               rel="stylesheet"
@@ -94,6 +97,9 @@ function LoginForm({ LoginUser, error, setError }) {
           </a>
         </form>
       </div>
+      <span className="slider">
+        {/* <ToggleSlider onClick={() => setIsDarkMode(!isDarkMode)} /> */}
+      </span>
     </div>
   );
 }
