@@ -2,12 +2,25 @@
   "name": "doctorjobs",
   "version": "0.1.0",
   "private": true,
+  "compilerOptions": {
+    "target": "es6",
+    "module": "es6",
+    "type": "module"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "axios": "axios/dist/node/axios.cjs",
+      "react-router-dom": "react-router-dom/dist/umd/react-router-dom.development.js"
+    }
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.2.2",
     "axioss": "^0.0.1-security",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-15": "^1.4.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-fontawesome": "^1.7.1",

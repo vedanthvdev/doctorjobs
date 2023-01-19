@@ -173,7 +173,6 @@ input[type="submit"]:hover {
 #forgot-password-container a {
   text-align: right;
   font-size: 18px;
-  color: #333;
   margin-top: 10px;
   text-decoration: underline;
   cursor: pointer;
@@ -186,6 +185,10 @@ input[type="submit"]:hover {
 /* Login Hover Transition effect */
 #forgot-password-container:hover {
   transform: scale(1.03);
+}
+
+#back-to-login:hover {
+  transform: scale(1.3);
 }
 
 /* Sign up link */
@@ -205,6 +208,10 @@ input[type="submit"]:hover {
 #Light #signup-link {
   color: #333;
   background: linear-gradient(to right, #6be96f, #c7e80a);
+}
+
+#Light #back-to-login {
+  color: #333;
 }
 
 #Light #signup-link:hover {
