@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
-import { ToggleSlider } from "react-toggle-slider";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-function LoginForm({ LoginUser, error, setError }) {
+function LoginForm({ setUser, error, setError }) {
   let navigate = useNavigate();
-
-  const [isDarkMode, setIsDarkMode] = useState(false);
 
   const [details, setDetails] = useState({ email: "", password: "" });
 
@@ -14,6 +12,30 @@ function LoginForm({ LoginUser, error, setError }) {
       ...details,
       [event.target.name]: event.target.value,
     });
+  };
+
+  const LoginUser = (details) => {
+    console.log(details);
+
+    axios
+      .post("http://localhost:3000/login", {
+        email: details.email,
+        password: details.password,
+      })
+      .then((response) => {
+        if (!response.data.message) {
+          console.log("Successfully Logged in! Welcom to your future");
+          setUser({
+            email: details.email,
+            password: details.password,
+          });
+          setError("");
+          navigate("/profile");
+        } else {
+          console.log("The details don't match");
+          setError("The details don't match");
+        }
+      });
   };
 
   const submitHandler = (e) => {
@@ -66,6 +88,7 @@ function LoginForm({ LoginUser, error, setError }) {
                 value={details.email}
                 onChange={handleChange}
                 placeholder="Email"
+                data-testid="email"
               />
             </label>
             <br />
@@ -81,13 +104,22 @@ function LoginForm({ LoginUser, error, setError }) {
                 value={details.password}
                 onChange={handleChange}
                 placeholder="Password"
+                data-testid="password"
               />
             </label>
             {/* {error !== "" ? <div className="errorValue">{error}</div> : ""} */}
             <br />
-            <input type="submit" value="Log In" id="submit" />
+            <input
+              data-testid="submit"
+              type="submit"
+              value="Log In"
+              id="submit"
+            />
           </div>
-          <div id="forgot-password-container">
+          <div
+            id="forgot-password-container"
+            onClick={() => navigate("/forgotpassword")}
+          >
             <a href="#" id="forgot-password">
               Forgotten Password
             </a>
@@ -97,9 +129,6 @@ function LoginForm({ LoginUser, error, setError }) {
           </a>
         </form>
       </div>
-      <span className="slider">
-        {/* <ToggleSlider onClick={() => setIsDarkMode(!isDarkMode)} /> */}
-      </span>
     </div>
   );
 }

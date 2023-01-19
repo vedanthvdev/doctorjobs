@@ -30,7 +30,8 @@
 
 #Dark input[type="submit"] {
   color: white;
-  background: linear-gradient(to right, #301f93, #91118f);
+  /* background: linear-gradient(to right, #6be96f, #c7e80a); */
+  background: linear-gradient(to right, #1a391b, #465204);
 }
 
 #Dark input[type="submit"]:hover {
@@ -39,7 +40,11 @@
 
 #Dark #signup-link {
   color: white;
-  background: linear-gradient(to right, #301f93, #91118f);
+  background: linear-gradient(to right, #1a391b, #465204);
+}
+
+#Dark #back-to-login {
+  color: white;
 }
 
 #Dark #signup-link:hover {

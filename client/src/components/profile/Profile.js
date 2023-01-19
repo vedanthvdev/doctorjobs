@@ -1,10 +1,8 @@
 import { useEffect, useState, useRef } from "react";
 import Axios from "axios";
-import { useNavigate } from "react-router-dom";
 import NavBar from "../navigationBar/NavBar";
 
 function Profile(user, Logout) {
-  const navigate = useNavigate();
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {

@@ -53,6 +53,23 @@ app.post("/login", (req, res) => {
   );
 });
 
+// Check if the Email is present in the database
+app.post("/forgotpassword", (req, res) => {
+  const email = req.body.email;
+
+  db.query("SELECT * FROM users WHERE u_email = ?", [email], (err, result) => {
+    if (err) {
+      res.send({ err: err });
+    }
+
+    if (result.length > 0) {
+      res.send(result);
+    } else {
+      res.send({ message: "Email not found" });
+    }
+  });
+});
+
 //Get all the jobs
 app.post("/getjobs", (req, res) => {
   db.query(
@@ -65,6 +82,6 @@ app.post("/getjobs", (req, res) => {
   );
 });
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
   console.log("running server");
 });

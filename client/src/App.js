@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./App.css";
 import "./DarkApp.css";
 
@@ -7,42 +7,19 @@ import "./components/navigationBar/NavBar.css";
 import "./components/signup/SignUp.css";
 import Profile from "./components/profile/Profile";
 import LoginForm from "./components/login/LoginForm";
-import { useNavigate, Navigate, Routes, Route } from "react-router-dom";
+import { Navigate, Routes, Route } from "react-router-dom";
 import SignUp from "./components/signup/SignUp";
-import Axios from "axios";
 import { createContext } from "react";
 import ReactSwitch from "react-switch";
+import ForgotPassword from "./components/forgotPassword/ForgotPassword";
 
 export const ThemeContext = createContext(null);
 
 function App() {
-  const navigate = useNavigate();
   const [theme, setTheme] = useState("Light");
 
   const [user, setUser] = useState({ email: "", password: "" });
   const [error, setError] = useState();
-
-  const LoginUser = (details) => {
-    console.log(details);
-
-    Axios.post("http://localhost:3000/login", {
-      email: details.email,
-      password: details.password,
-    }).then((response) => {
-      if (!response.data.message) {
-        console.log("Successfully Logged in! Welcom to your future");
-        setUser({
-          email: details.email,
-          password: details.password,
-        });
-        setError("");
-        navigate("/profile");
-      } else {
-        console.log("The details don't match");
-        setError("The details don't match");
-      }
-    });
-  };
 
   const Logout = (details) => {
     console.log(details);
@@ -63,11 +40,7 @@ function App() {
             exact
             path="/login"
             element={
-              <LoginForm
-                LoginUser={LoginUser}
-                error={error}
-                setError={setError}
-              />
+              <LoginForm setUser={setUser} error={error} setError={setError} />
             }
           />
           <Route
@@ -76,9 +49,10 @@ function App() {
             element={<Profile user={user} Logout={Logout} />}
           />
           <Route exact path="/signup" element={<SignUp />} />
+          <Route exact path="/forgotpassword" element={<ForgotPassword />} />
         </Routes>
         <div className="switch">
-          <label>
+          <label id="switch">
             {theme} Mode
             <br />
             <ReactSwitch onChange={toggleTheme} checked={theme === "Dark"} />

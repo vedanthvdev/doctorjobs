@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import Axios from "axios";
-import passwordValidation from "../../passwordValidation";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function SignUp() {
-  const navigate = useNavigate();
+  let navigate = useNavigate();
   const [regFirstName, setRegFirstName] = useState("");
   const [regLastName, setRegLastName] = useState("");
   const [regEmail, setRegEmail] = useState("");
@@ -13,37 +12,36 @@ function SignUp() {
   const [error, setError] = useState("");
 
   const register = () => {
-    Axios.post("http://localhost:3000/signup", {
-      firstname: regFirstName,
-      lastname: regLastName,
-      email: regEmail,
-      password: regPassword,
-    }).then((response) => {
-      console.log(response);
-    });
+    axios
+      .post("http://localhost:3000/signup", {
+        firstname: regFirstName,
+        lastname: regLastName,
+        email: regEmail,
+        password: regPassword,
+      })
+      .then((response) => {
+        console.log(response);
+      });
   };
 
-  //   const validatePasswordSmilar = (e) => {
-  //     setError("");
-  //     setConfirmPassword(e.target.value);
-  //     if (regPassword === regConfirmPassword) {
-  //       setError("");
-  //     } else {
-  //       setError("Passwords don't match!");
-  //     }
-  //   };
-
   function handleValidation() {
-    setError(passwordValidation(regPassword, regConfirmPassword));
+    if (regPassword !== regConfirmPassword || regConfirmPassword === "") {
+      setError("Passwords don't match");
+    }
     if (error === "") {
       register();
       navigate("/login");
+      setError("");
     }
   }
 
   return (
-    <body className="signup-body">
-      <form className="signup-container" onSubmit={handleValidation}>
+    <div className="signup-body">
+      <form
+        data-testid="signup-form"
+        className="signup-container"
+        onSubmit={handleValidation}
+      >
         <link rel="stylesheet" href="signup.css"></link>
         <link
           rel="stylesheet"
@@ -108,6 +106,7 @@ function SignUp() {
             type="password"
             id="password"
             name="password"
+            data-testid="password"
             required
             onChange={(e) => {
               setPassword(e.target.value);
@@ -125,20 +124,21 @@ function SignUp() {
             type="password"
             id="confirm-password"
             name="confirm-password"
+            data-testid="confirm-password"
             required
             placeholder="Confirm Password"
             onChange={(e) => {
-              setPassword(e.target.value);
+              setConfirmPassword(e.target.value);
             }}
           />
         </label>
         <br />
-        {error !== "" ? <div className="errorValue">{error}</div> : ""}
+        {error === "" ? "" : <div className="errorValue">{error}</div>}
 
         <br />
         <input id="submit" type="submit" value="Submit" />
       </form>
-    </body>
+    </div>
   );
 }
 
