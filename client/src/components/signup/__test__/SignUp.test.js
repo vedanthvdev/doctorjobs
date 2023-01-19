@@ -2,8 +2,6 @@ import React from "react";
 import SignUp from "../../signup/SignUp";
 import { render, screen, cleanup, fireEvent } from "@testing-library/react";
 import { withRouter } from "../../../setupTests";
-import { shallow } from "enzyme";
-
 import axios from "axios";
 jest.mock("axios");
 
