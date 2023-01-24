@@ -2,7 +2,6 @@
   position: absolute;
   height: 100vh;
   width: 100vw;
-  background-image: url("../../../redplus.jpeg");
   background-repeat: repeat-x 50;
 }
 
@@ -13,7 +12,6 @@ form[type="filter-job"] {
   margin: 105px 20px;
   background-color: #f5f1f3;
   opacity: 0.9;
-  box-shadow: 0 0 40px rgb(190, 13, 13);
 }
 
 select {
@@ -31,4 +29,103 @@ label[type="job-type"] {
   position: absolute;
   margin-top: 20px;
   text-align: center;
+}
+
+ul#jobs-list {
+  margin-top: 100px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+form.jobs-available {
+  width: 250px;
+  height: 200px;
+  flex-basis: 250px;
+  margin: 20px;
+}
+
+ul#all-jobs-list {
+  margin-top: 400px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+form.all-jobs-available {
+  width: 250px;
+  height: 200px;
+  flex-basis: 250px;
+  margin: 20px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.modal-content {
+  padding: 20px;
+  border-radius: 5px;
+  z-index: 11;
+  position: relative;
+}
+
+#Light .modal-content {
+  background: #f5f1f3;
+}
+
+#Dark .modal-content {
+  background: #1d2226;
+}
+
+.modal-overlay.show {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s linear 0s, opacity 0.3s linear;
+}
+.modal-overlay.hide {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s linear 0.3s, opacity 0;
+}
+
+.modal-overlay .modal-content #close-modal {
+  position: absolute;
+  cursor: pointer;
+  margin: 2px 2px;
+
+  border-radius: 8px;
+  top: 10px;
+  right: 10px;
+}
+
+.contact-button {
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+#Light .contact-button {
+  background-color: white;
+  color: #1d2226;
+}
+
+#Dark .contact-button {
+  background-color: #1d2226;
+  color: white;
+  border: 2px solid #848884;
+}
+
+#Light .apply-link {
+  color: #3d24da;
+}
+
+#Dark .apply-link {
+  color: #2479da;
 }

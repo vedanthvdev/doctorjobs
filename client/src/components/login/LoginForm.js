@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function LoginForm({ setUser, error, setError }) {
+function LoginForm({ setUser, error, setError, setIsAuthenticated }) {
   let navigate = useNavigate();
 
   const [details, setDetails] = useState({ email: "", password: "" });
@@ -18,13 +18,15 @@ function LoginForm({ setUser, error, setError }) {
     console.log(details);
 
     axios
-      .post("http://localhost:3000/login", {
+      .post("http://localhost:3000/api/authenticate", {
         email: details.email,
         password: details.password,
       })
       .then((response) => {
         if (!response.data.message) {
           console.log("Successfully Logged in! Welcom to your future");
+          setIsAuthenticated(true);
+          window.localStorage.setItem("isLoggedIn", true);
           setUser({
             email: details.email,
             password: details.password,

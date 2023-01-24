@@ -4,9 +4,9 @@
 
 #Light {
   position: absolute;
-  height: 100vh;
+  height: 150vh;
   width: 100vw;
-  background-color: #45a9c0;
+  background-color: #f3f2ef;
 }
 
 /* Form container */
@@ -20,8 +20,7 @@ form {
 }
 
 #Light form {
-  background-color: #f5f5f5;
-  box-shadow: 0 0 40px rgb(18, 18, 18);
+  background-color: #fff;
 }
 
 /* Background Image */
@@ -46,13 +45,30 @@ h3 {
   font-weight: bold;
 }
 
+h4 {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+p {
+  text-align: center;
+  font-size: 18px;
+}
+
 #Light h3 {
-  color: #333;
+  color: #000000e6;
+}
+
+#Light p {
+  color: #000000e6;
 }
 
 /* Input labels */
 label {
-  font-size: 28px;
+  font-size: 23px;
   margin-bottom: 5px;
   display: block;
   text-align: center;
@@ -72,13 +88,14 @@ input[type="password"] {
 }
 
 #Light input {
-  background-color: #f5f5f5;
-  border: 2px solid #ccc;
+  background-color: #fff;
+  border: 2px solid #848884;
 }
 
 #Light select {
-  background-color: #f5f5f5;
-  border: 2px solid #ccc;
+  background-color: #fff;
+  color: #848884;
+  border: 2px solid #848884;
 }
 
 /* Input hover color change*/
@@ -109,18 +126,20 @@ input[type="password"],
 select {
   transition: all 0.2s ease-in-out;
   padding-left: 40px;
+  box-sizing: border-box;
+  border-radius: 16px;
 }
 
 /* Add css for the email and lock icon */
 span.icon i {
   font-size: 18px;
-  color: rgb(136, 132, 132);
+  color: #848884;
   pointer-events: none;
   z-index: 2;
 }
 
 #Light span.icon i {
-  color: rgb(136, 132, 132);
+  color: #848884;
 }
 
 label.label-text input {
@@ -155,7 +174,7 @@ input[type="submit"] {
 }
 
 #Light input[type="submit"] {
-  color: #333;
+  color: #000000e6;
   background: linear-gradient(to right, #6be96f, #c7e80a);
 }
 
@@ -179,7 +198,7 @@ input[type="submit"]:hover {
 }
 
 #Light #forgot-password-container a {
-  color: #333;
+  color: #848884;
 }
 
 /* Login Hover Transition effect */
@@ -206,12 +225,12 @@ input[type="submit"]:hover {
 }
 
 #Light #signup-link {
-  color: #333;
+  color: #000000e6;
   background: linear-gradient(to right, #6be96f, #c7e80a);
 }
 
 #Light #back-to-login {
-  color: #333;
+  color: #848884;
 }
 
 #Light #signup-link:hover {
@@ -219,6 +238,7 @@ input[type="submit"]:hover {
 }
 
 /* Login Hover Transition effect */
+
 #signup-link:hover {
   transform: scale(1.03);
   border-radius: 20px;
@@ -272,5 +292,5 @@ input[type="submit"]:hover {
 }
 
 #Light .switch label {
-  color: #333;
+  color: #000000e6;
 }

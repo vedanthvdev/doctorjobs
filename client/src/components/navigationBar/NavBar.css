@@ -10,19 +10,17 @@ nav {
 }
 
 #Light nav {
-  background-color: #07bdc7;
-  box-shadow: 0 0 40px rgb(190, 13, 13);
+  background-color: #fff;
 }
 
 #Dark nav {
-  background-color: #0d0d0e;
-  box-shadow: 0 0 40px rgb(190, 13, 13);
+  background-color: #1d2226;
 }
 
 nav ul {
   list-style: none;
   display: flex;
-  margin-top: 20px;
+  margin-top: 5px;
   margin-bottom: 0px;
   padding: 5px 15px;
 }
@@ -36,25 +34,102 @@ nav li {
   border-radius: 8px;
 }
 
-#Light nav li {
-  background: linear-gradient(to right, #e96be1, #0acae8);
-  box-shadow: 0px 0px 10px rgb(149, 161, 14);
-}
-
-#Dark nav li {
-  background: linear-gradient(to right, #702d6b, #0a7383);
-  box-shadow: 0px 0px 10px rgb(221, 109, 19);
+nav li {
+  background: transparent;
 }
 
 nav a {
+  align-items: center;
   text-decoration: none;
-  font-weight: bold;
+}
+
+nav li:hover {
+  transform: scale(1.03);
+  transition: all 0.2s ease-in-out;
+}
+
+nav span {
+  align-items: center;
+  font-size: 150%;
+  font-weight: 400;
 }
 
 #Light nav a {
-  color: #333;
+  color: #848884;
+}
+
+#Light nav span {
+  color: #848884;
 }
 
 #Dark nav a {
+  color: #848884;
+}
+
+#Dark nav a:hover {
   color: white;
+}
+
+#Dark nav i:hover {
+  color: white;
+}
+
+#Light nav a:hover {
+  color: #000000e6;
+}
+
+#Light nav i:hover {
+  color: #000000e6;
+}
+
+#Dark nav li.active a {
+  color: white;
+}
+
+#Dark nav li.active i {
+  color: white;
+}
+
+#Light nav li.active a {
+  color: #000000e6;
+}
+
+#Light nav li.active i {
+  color: #000000e6;
+}
+
+#logout {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 10px 15px;
+  font-weight: bold;
+  font-size: 20px;
+  text-decoration: none;
+  border-radius: 20px;
+  transition: all 0.2s ease-in-out;
+  z-index: 3;
+}
+
+#Dark #logout {
+  color: white;
+  background: linear-gradient(to right, #1a391b, #465204);
+}
+
+#Dark #logout:hover {
+  background: linear-gradient(to right, #927212, #910d0d);
+}
+
+#Light #logout {
+  color: #000000e6;
+  background: linear-gradient(to right, #6be96f, #c7e80a);
+}
+
+#Light #logout:hover {
+  background: linear-gradient(to right, #edc965, #ec3f3f);
+}
+
+#logout:hover {
+  transform: scale(1.03);
+  border-radius: 20px;
 }

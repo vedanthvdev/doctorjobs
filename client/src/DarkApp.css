@@ -1,13 +1,12 @@
 #Dark form {
-  background-color: #221f1f;
-  box-shadow: 0 0 40px rgb(245, 241, 241);
+  background-color: #1d2226;
 }
 
 #Dark {
   position: absolute;
-  height: 100vh;
+  height: 150vh;
   width: 100vw;
-  background-color: rgb(0, 0, 0);
+  background-color: #000;
 }
 
 #Dark .login {
@@ -23,7 +22,7 @@
 }
 
 #Dark input {
-  background-color: #494b4c;
+  background-color: #1d2226;
   color: rgb(255, 255, 255);
   border: 2px solid rgb(20, 2, 2);
 }
@@ -47,12 +46,20 @@
   color: white;
 }
 
+#Dark p {
+  color: white;
+}
+
+#Dark h4 {
+  color: white;
+}
+
 #Dark #signup-link:hover {
   background: linear-gradient(to right, #927212, #910d0d);
 }
 
 #Dark select {
-  background-color: #494b4c;
+  background-color: #1d2226;
   color: rgb(253, 249, 249);
   border: 2px solid rgb(14, 13, 13);
   opacity: 0.9;
