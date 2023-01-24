@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function LoginForm({ setUser, error, setError, setIsAuthenticated }) {
+function LoginForm({ setUser, error, setError }) {
   let navigate = useNavigate();
 
   const [details, setDetails] = useState({ email: "", password: "" });
@@ -25,7 +25,6 @@ function LoginForm({ setUser, error, setError, setIsAuthenticated }) {
       .then((response) => {
         if (!response.data.message) {
           console.log("Successfully Logged in! Welcom to your future");
-          setIsAuthenticated(true);
           window.localStorage.setItem("isLoggedIn", true);
           setUser({
             email: details.email,

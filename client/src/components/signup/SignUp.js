@@ -137,7 +137,7 @@ function SignUp() {
 
         <br />
         <input id="submit" type="submit" value="Submit" />
-        <a href="#" id="back-to-login" onClick={() => navigate("/login")}>
+        <a href="sd" id="back-to-login" onClick={() => navigate("/login")}>
           Back to login
         </a>
       </form>

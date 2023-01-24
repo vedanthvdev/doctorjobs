@@ -23,7 +23,7 @@ function App() {
   const [user, setUser] = useState({ email: "", password: "" });
   const [error, setError] = useState();
 
-  const loggedIn = window.localStorage.setItem("isLoggedIn", true);
+  const loggedIn = window.localStorage.getItem("isLoggedIn");
 
   const Logout = (details) => {
     console.log(details);
@@ -33,8 +33,6 @@ function App() {
   const toggleTheme = () => {
     setTheme((current) => (current === "Light" ? "Dark" : "Light"));
   };
-
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
@@ -46,36 +44,34 @@ function App() {
             exact
             path="/login"
             element={
-              <LoginForm
-                setUser={setUser}
-                error={error}
-                setError={setError}
-                setIsAuthenticated={setIsAuthenticated}
-              />
+              <LoginForm setUser={setUser} error={error} setError={setError} />
             }
           />
           <Route
             exact
             path="/profile"
             element={
-              <Profile
+              loggedIn ? (
+                <Profile
                 // user={user}
                 // Logout={Logout}
-                isAuthenticated={isAuthenticated}
-              />
+                />
+              ) : (
+                <Navigate to="/login" />
+              )
             }
           />
           <Route exact path="/signup" element={<SignUp />} />
           <Route
             exact
             path="/employer"
-            element={<Employer isAuthenticated={isAuthenticated} />}
+            element={loggedIn ? <Employer /> : <Navigate to="/login" />}
           />
 
           <Route
             exact
             path="/jobs"
-            element={<Jobs isAuthenticated={isAuthenticated} />}
+            element={loggedIn ? <Jobs /> : <Navigate to="/login" />}
           />
 
           <Route exact path="/forgotpassword" element={<ForgotPassword />} />

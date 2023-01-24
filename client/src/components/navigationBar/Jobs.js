@@ -1,14 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import NavBar from "../navigationBar/NavBar";
 
-function Jobs({ isAuthenticated }) {
-  let navigate = useNavigate();
+function Jobs() {
   const [jobs, setJobs] = useState([]);
   const [filteredJobs, setFilteredJobs] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
-  const [isDataFetched, setIsDataFetched] = useState(false);
 
   const [contact, setContact] = useState(null);
 
@@ -42,21 +39,17 @@ function Jobs({ isAuthenticated }) {
   };
 
   useEffect(() => {
-    if (!isAuthenticated) {
-      navigate("/login");
-    } else {
-      axios
-        .get("http://localhost:3000/api/getjobs", {
-          responseType: "json",
-        })
-        .then((response) => {
-          setJobs(response.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-  }, [isAuthenticated]);
+    axios
+      .get("http://localhost:3000/api/getjobs", {
+        responseType: "json",
+      })
+      .then((response) => {
+        setJobs(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   // useRef hook to create references to the filter form elements
   const jobTitleInput = useRef(null);
@@ -65,10 +58,6 @@ function Jobs({ isAuthenticated }) {
 
   // function to filter jobs
   function filterJobs() {
-    if (!isDataFetched) {
-      return;
-    }
-
     // get the filter values
     const jobTitle = jobTitleInput.current.value.toLowerCase();
     const location = locationInput.current.value.toLowerCase();
@@ -146,8 +135,8 @@ function Jobs({ isAuthenticated }) {
       <ul id="all-jobs-list">
         {jobs.length > 0 ? (
           jobs.map((job) => (
-            <form className="all-jobs-available">
-              <div className="job-card">
+            <form className="all-jobs-available" key={job.id}>
+              <div className="job-card" id={job.id}>
                 <h4>{job.title}</h4>
                 <p>{job.company}</p>
                 <p>{job.location}</p>

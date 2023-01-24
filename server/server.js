@@ -92,7 +92,7 @@ app.post("/api/forgotpassword", (req, res) => {
 //Get all the jobs
 app.get("/api/getjobs", (req, res) => {
   db.query(
-    'SELECT json_arrayagg(JSON_OBJECT("title", j_title, "company", j_company, "location", j_location, "job_type", j_type, "apply_link", j_link, "contact", j_contact)) as job FROM LoginSystem.jobs;',
+    'SELECT json_arrayagg(JSON_OBJECT("id", j_id, "title", j_title, "company", j_company, "location", j_location, "job_type", j_type, "apply_link", j_link, "contact", j_contact)) as job FROM LoginSystem.jobs;',
     (err, result) => {
       if (err) {
         console.log(err);
