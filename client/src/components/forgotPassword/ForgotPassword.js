@@ -60,7 +60,7 @@ function ForgotPassword() {
           id="forgot-submit"
         />{" "}
         <br />
-        <a href="#" id="back-to-login" onClick={() => navigate("/login")}>
+        <a href="/login" id="back-to-login">
           Back to login
         </a>
       </form>

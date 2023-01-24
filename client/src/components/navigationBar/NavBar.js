@@ -1,10 +1,8 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 
 function NavBar() {
-  const navigate = useNavigate();
   const [activeLink, setActiveLink] = useState(null);
 
   useEffect(() => {
@@ -22,13 +20,7 @@ function NavBar() {
       <nav className="navigation-bar">
         <ul>
           <li className={activeLink === 0 ? "active" : ""}>
-            <a
-              href="#"
-              onClick={() => {
-                navigate("/profile");
-                // setActiveLink(0);
-              }}
-            >
+            <a href="/profile">
               <span className="nav-icon">
                 <i className="fa-solid fa-house"></i>
               </span>
@@ -37,13 +29,7 @@ function NavBar() {
             </a>
           </li>
           <li className={activeLink === 1 ? "active" : ""}>
-            <a
-              href="#"
-              onClick={() => {
-                navigate("/jobs");
-                // setActiveLink(1);
-              }}
-            >
+            <a href="/jobs">
               <span className="nav-icon">
                 <i className="fa-solid fa-suitcase"></i>
               </span>
@@ -52,13 +38,7 @@ function NavBar() {
             </a>
           </li>
           <li className={activeLink === 2 ? "active" : ""}>
-            <a
-              href="#"
-              onClick={() => {
-                navigate("/employer");
-                // setActiveLink(2);
-              }}
-            >
+            <a href="/employer">
               <span className="nav-icon">
                 <i className="fa-solid fa-network-wired"></i>{" "}
               </span>
@@ -67,10 +47,9 @@ function NavBar() {
             </a>
           </li>
           <a
-            href="#"
+            href="/login"
             id="logout"
             onClick={() => {
-              navigate("/");
               window.localStorage.removeItem("isLoggedIn");
             }}
           >
