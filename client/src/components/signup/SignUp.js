@@ -13,7 +13,7 @@ function SignUp() {
 
   const register = () => {
     axios
-      .post("http://localhost:3000/signup", {
+      .post("http://localhost:3000/api/signup", {
         firstname: regFirstName,
         lastname: regLastName,
         email: regEmail,
@@ -137,6 +137,9 @@ function SignUp() {
 
         <br />
         <input id="submit" type="submit" value="Submit" />
+        <a href="#" id="back-to-login" onClick={() => navigate("/login")}>
+          Back to login
+        </a>
       </form>
     </div>
   );

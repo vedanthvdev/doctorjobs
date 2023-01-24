@@ -16,7 +16,7 @@ const db = mysql.createConnection({
 });
 
 // Register user into the database
-app.post("/signup", (req, res) => {
+app.post("/api/signup", (req, res) => {
   const firstname = req.body.firstname;
   const lastname = req.body.lastname;
   const email = req.body.email;
@@ -31,8 +31,27 @@ app.post("/signup", (req, res) => {
   );
 });
 
+// Register a job into the database
+app.post("/api/registerjob", (req, res) => {
+  const title = req.body.title;
+  const company = req.body.company;
+  const location = req.body.location;
+  const job_type = req.body.job_type;
+  const apply_link = req.body.apply_link;
+  const date = req.body.date;
+  const contact = req.body.contact;
+
+  db.query(
+    "INSERT INTO jobs (j_title, j_company, j_location, j_type, j_link, j_date) VALUES (?,?,?,?,?,?)",
+    [title, company, location, job_type, apply_link, date],
+    (err, result) => {
+      console.log(err);
+    }
+  );
+});
+
 // Check if the user is present in the database
-app.post("/login", (req, res) => {
+app.post("/api/authenticate", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
@@ -54,7 +73,7 @@ app.post("/login", (req, res) => {
 });
 
 // Check if the Email is present in the database
-app.post("/forgotpassword", (req, res) => {
+app.post("/api/forgotpassword", (req, res) => {
   const email = req.body.email;
 
   db.query("SELECT * FROM users WHERE u_email = ?", [email], (err, result) => {
@@ -71,12 +90,19 @@ app.post("/forgotpassword", (req, res) => {
 });
 
 //Get all the jobs
-app.post("/getjobs", (req, res) => {
+app.get("/api/getjobs", (req, res) => {
   db.query(
-    'SELECT JSON_ARRAYAGG( JSON_OBJECT("title", j_title, "company", j_company, "location", j_location, "jobe_type", j_type, "apply_link", j_link)) FROM LoginSystem.jobs;',
+    'SELECT json_arrayagg(JSON_OBJECT("title", j_title, "company", j_company, "location", j_location, "job_type", j_type, "apply_link", j_link, "contact", j_contact)) as job FROM LoginSystem.jobs;',
     (err, result) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send({ error: "Unable to fetch jobs" });
+        return;
+      }
       if (result.length > 0) {
-        res.send(result);
+        res.send(JSON.parse(result[0].job));
+      } else {
+        res.status(404).send({ error: "No jobs found" });
       }
     }
   );
