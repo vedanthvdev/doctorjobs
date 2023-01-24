@@ -24,14 +24,14 @@ function SignUp() {
       });
   };
 
-  function handleValidation() {
+  function handleValidation(e) {
+    e.preventDefault();
     if (regPassword !== regConfirmPassword || regConfirmPassword === "") {
       setError("Passwords don't match");
-    }
-    if (error === "") {
+    } else {
+      setError("");
       register();
       navigate("/login");
-      setError("");
     }
   }
 
@@ -133,11 +133,11 @@ function SignUp() {
           />
         </label>
         <br />
-        {error === "" ? "" : <div className="errorValue">{error}</div>}
+        {error && <div className="errorValue">{error}</div>}
 
         <br />
         <input id="submit" type="submit" value="Submit" />
-        <a href="sd" id="back-to-login" onClick={() => navigate("/login")}>
+        <a href="/login" id="back-to-login">
           Back to login
         </a>
       </form>

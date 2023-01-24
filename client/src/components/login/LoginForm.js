@@ -117,15 +117,12 @@ function LoginForm({ setUser, error, setError }) {
               id="submit"
             />
           </div>
-          <div
-            id="forgot-password-container"
-            onClick={() => navigate("/forgotpassword")}
-          >
-            <a href="#" id="forgot-password">
+          <div id="forgot-password-container">
+            <a href="/forgotpassword" id="forgot-password">
               Forgotten Password
             </a>
           </div>
-          <a href="#" id="signup-link" onClick={() => navigate("/signup")}>
+          <a href="/signup" id="signup-link">
             Sign Up
           </a>
         </form>
