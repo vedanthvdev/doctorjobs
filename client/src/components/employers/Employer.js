@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import NavBar from "../navigationBar/NavBar";
-import { useNavigate } from "react-router-dom";
 
-function Employer({ isAuthenticated }) {
-  let navigate = useNavigate();
-
+function Employer() {
   const [jobTitle, setJobTitle] = useState("");
   const [jobCompany, setJobCompany] = useState("");
   const [jobLocation, setJobLocation] = useState("");
@@ -13,12 +10,6 @@ function Employer({ isAuthenticated }) {
   const [jobLink, setJobLink] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-
-  useEffect(() => {
-    if (!isAuthenticated) {
-      navigate("/login");
-    }
-  }, [isAuthenticated]);
 
   const register = () => {
     const date = new Date();
