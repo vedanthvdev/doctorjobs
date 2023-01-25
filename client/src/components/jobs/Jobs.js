@@ -4,6 +4,10 @@ import NavBar from "../navigationBar/NavBar";
 
 function Jobs() {
   const [jobs, setJobs] = useState([]);
+  const [filterTitle, setFilterTitle] = useState([]);
+  const [filterLocation, setFilterLocation] = useState([]);
+  const [filterJobType, setFilterJobType] = useState([]);
+
   const [filteredJobs, setFilteredJobs] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -45,30 +49,24 @@ function Jobs() {
       })
       .then((response) => {
         setJobs(response.data);
+        setFilteredJobs(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
 
-  // useRef hook to create references to the filter form elements
-  const jobTitleInput = useRef(null);
-  const locationInput = useRef(null);
-  const jobTypeSelect = useRef(null);
-
   // function to filter jobs
-  function filterJobs() {
-    // get the filter values
-    const jobTitle = jobTitleInput.current.value.toLowerCase();
-    const location = locationInput.current.value.toLowerCase();
-    const jobType = jobTypeSelect.current.value;
-
+  function filterJobs(e) {
     // filter the jobs
+    e.preventDefault();
     const filteredJobs = jobs.filter((job) => {
       if (
-        (job.title.toLowerCase().includes(jobTitle) || jobTitle === "") &&
-        (job.location.toLowerCase().includes(location) || location === "") &&
-        (job.job_type === jobType || jobType === "all")
+        (job.title.toLowerCase().includes(filterTitle) ||
+          filterTitle.length === 0) &&
+        (job.location.toLowerCase().includes(filterLocation) ||
+          filterLocation.length === 0) &&
+        (job.job_type === filterJobType || filterJobType.length === 0)
       ) {
         return true;
       }
@@ -89,7 +87,7 @@ function Jobs() {
       {<NavBar />}
 
       <div className="filter-jobs">
-        <form type="filter-job">
+        <form type="filter-job" onSubmit={filterJobs}>
           <label className="filter">
             <span className="icon">
               <i className="fa-solid fa-user-doctor"></i>
@@ -98,6 +96,9 @@ function Jobs() {
               type="text"
               id="job-title"
               name="job-title"
+              onChange={(e) => {
+                setFilterTitle(e.target.value.toLowerCase());
+              }}
               placeholder="Job Title"
             />
           </label>
@@ -109,30 +110,66 @@ function Jobs() {
               type="text"
               id="location"
               name="location"
+              onChange={(e) => {
+                setFilterLocation(e.target.value.toLowerCase());
+              }}
               placeholder="Location"
             />
           </label>
           <br />
 
           <label>
-            <select id="job-type" name="job-type" placeholder="Job type">
-              <option value="all">All</option>
-              <option value="full-time">Full-time</option>
-              <option value="part-time">Part-time</option>
-              <option value="part-time">Locum</option>
+            <select
+              id="job-type"
+              name="job-type"
+              placeholder="Job type"
+              onChange={(event) => {
+                setFilterJobType(event.target.value);
+              }}
+            >
+              <option value="All">All</option>
+              <option value="Full-time">Full-time</option>
+              <option value="Part-time">Part-time</option>
+              <option value="Locum">Locum</option>
             </select>
           </label>
 
-          <input
-            type="submit"
-            value="Filter"
-            id="filter-submit"
-            onClick={filterJobs}
-          />
+          <input type="submit" value="Filter" id="filter-submit" />
         </form>
       </div>
       <br />
+
       <ul id="all-jobs-list">
+        {filteredJobs.length > 0 ? (
+          filteredJobs.map((job) => (
+            <form className="all-jobs-available" key={job.id}>
+              <div className="job-card" id={job.id}>
+                <h4>{job.title}</h4>
+                <p>{job.company}</p>
+                <p>{job.location}</p>
+                <p>{job.job_type}</p>
+                {job.apply_link && (
+                  <a href={job.apply_link} className="apply-link">
+                    Apply Now
+                  </a>
+                )}
+                {job.contact && (
+                  <button
+                    className="contact-button"
+                    onClick={(e) => openContactModal(e, job.contact[0])}
+                  >
+                    Contact
+                  </button>
+                )}
+              </div>
+            </form>
+          ))
+        ) : (
+          <div>No jobs found</div>
+        )}
+      </ul>
+
+      {/* <ul id="all-jobs-list">
         {jobs.length > 0 ? (
           jobs.map((job) => (
             <form className="all-jobs-available" key={job.id}>
@@ -160,7 +197,8 @@ function Jobs() {
         ) : (
           <div>No jobs found</div>
         )}
-      </ul>
+      </ul> */}
+
       {contact && (
         <div className={`modal-overlay ${isOpen ? "show" : "hide"}`}>
           <div className={`modal-content ${isOpen ? "show" : "hide"}`}>

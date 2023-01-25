@@ -12,7 +12,7 @@ import SignUp from "./components/signup/SignUp";
 import { createContext } from "react";
 import ReactSwitch from "react-switch";
 import ForgotPassword from "./components/forgotPassword/ForgotPassword";
-import Jobs from "./components/navigationBar/Jobs";
+import Jobs from "./components/jobs/Jobs";
 import Employer from "./components/employers/Employer";
 
 export const ThemeContext = createContext(null);
