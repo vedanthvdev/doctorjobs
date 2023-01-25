@@ -42,8 +42,8 @@ app.post("/api/registerjob", (req, res) => {
   const contact = req.body.contact;
 
   db.query(
-    "INSERT INTO jobs (j_title, j_company, j_location, j_type, j_link, j_date) VALUES (?,?,?,?,?,?)",
-    [title, company, location, job_type, apply_link, date],
+    "INSERT INTO jobs (j_title, j_company, j_location, j_type, j_link, j_date, j_contact) VALUES (?,?,?,?,?,?,?)",
+    [title, company, location, job_type, apply_link, date, contact],
     (err, result) => {
       console.log(err);
     }
@@ -93,6 +93,25 @@ app.post("/api/forgotpassword", (req, res) => {
 app.get("/api/getjobs", (req, res) => {
   db.query(
     'SELECT json_arrayagg(JSON_OBJECT("id", j_id, "title", j_title, "company", j_company, "location", j_location, "job_type", j_type, "apply_link", j_link, "contact", j_contact)) as job FROM LoginSystem.jobs;',
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send({ error: "Unable to fetch jobs" });
+        return;
+      }
+      if (result.length > 0) {
+        res.send(JSON.parse(result[0].job));
+      } else {
+        res.status(404).send({ error: "No jobs found" });
+      }
+    }
+  );
+});
+
+//Get recent 10 jobs
+app.get("/api/getrecentjobs", (req, res) => {
+  db.query(
+    'SELECT json_arrayagg(JSON_OBJECT("id", j_id, "title", j_title, "company", j_company, "location", j_location, "job_type", j_type, "apply_link", j_link, "contact", j_contact)) as job FROM (SELECT * FROM LoginSystem.jobs ORDER BY j_date DESC LIMIT 10) as sorted_jobs;',
     (err, result) => {
       if (err) {
         console.log(err);

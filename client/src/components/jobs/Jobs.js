@@ -32,8 +32,8 @@ function Jobs() {
       <div className="modal-overlay">
         <div className="modal-content">
           <h4>Contact Details</h4>
-          <p>Email: {contact.email}</p>
-          <p>Phone: {contact.phone}</p>
+          {contact.email && <p>Email: {contact.email}</p>}
+          {contact.phone && <p>Phone: {contact.phone}</p>}
           <button id="close-modal" onClick={closeModal}>
             Close
           </button>
@@ -66,7 +66,9 @@ function Jobs() {
           filterTitle.length === 0) &&
         (job.location.toLowerCase().includes(filterLocation) ||
           filterLocation.length === 0) &&
-        (job.job_type === filterJobType || filterJobType.length === 0)
+        (job.job_type === filterJobType ||
+          filterJobType.length === 0 ||
+          filterJobType === "All")
       ) {
         return true;
       }
@@ -153,7 +155,7 @@ function Jobs() {
                     Apply Now
                   </a>
                 )}
-                {job.contact && (
+                {(job.contact[0].phone || job.contact[0].email) && (
                   <button
                     className="contact-button"
                     onClick={(e) => openContactModal(e, job.contact[0])}
@@ -168,36 +170,6 @@ function Jobs() {
           <div>No jobs found</div>
         )}
       </ul>
-
-      {/* <ul id="all-jobs-list">
-        {jobs.length > 0 ? (
-          jobs.map((job) => (
-            <form className="all-jobs-available" key={job.id}>
-              <div className="job-card" id={job.id}>
-                <h4>{job.title}</h4>
-                <p>{job.company}</p>
-                <p>{job.location}</p>
-                <p>{job.job_type}</p>
-                {job.apply_link && (
-                  <a href={job.apply_link} className="apply-link">
-                    Apply Now
-                  </a>
-                )}
-                {job.contact && (
-                  <button
-                    className="contact-button"
-                    onClick={(e) => openContactModal(e, job.contact[0])}
-                  >
-                    Contact
-                  </button>
-                )}
-              </div>
-            </form>
-          ))
-        ) : (
-          <div>No jobs found</div>
-        )}
-      </ul> */}
 
       {contact && (
         <div className={`modal-overlay ${isOpen ? "show" : "hide"}`}>

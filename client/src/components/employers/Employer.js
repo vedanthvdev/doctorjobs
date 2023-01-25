@@ -10,10 +10,14 @@ function Employer() {
   const [jobLink, setJobLink] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [success, setSuccess] = useState("");
 
-  const register = () => {
+  const register = (e) => {
+    e.preventDefault();
+
     const date = new Date();
     const formattedDate = date.toISOString().slice(0, 19).replace("T", " ");
+
     axios
       .post("http://localhost:3000/api/registerjob", {
         title: jobTitle,
@@ -22,14 +26,16 @@ function Employer() {
         job_type: jobType,
         apply_link: jobLink,
         date: formattedDate,
-        contact: "email:" + email + "number:" + phoneNumber,
-        //   JSON.parse(
-        //   '{"email":' + '"' + email + '",' + '"phone":"' + phoneNumber + '"}'
-        // ),
+        contact: JSON.stringify([{ email: email, phone: phoneNumber }]),
       })
       .then((response) => {
         console.log(response);
       });
+    setSuccess("Job Uploaded Successfully");
+    setTimeout(() => {
+      window.location.reload();
+      setSuccess("");
+    }, 2000);
   };
 
   return (
@@ -155,7 +161,7 @@ function Employer() {
           </select>
         </label>
 
-        {/* {error === "" ? "" : <div className="errorValue">{error}</div>} */}
+        {success && <div className="successValue">{success}</div>}
 
         <br />
         <input id="submit" type="submit" value="Submit" />

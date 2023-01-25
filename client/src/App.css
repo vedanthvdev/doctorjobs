@@ -158,6 +158,22 @@ span.icon i {
   margin-top: 10px;
   color: red;
   font-size: 18px;
+  font-weight: bold;
+}
+
+/* Success message */
+.successValue {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#Light .successValue {
+  color: #205c22;
+}
+
+#Dark .successValue {
+  color: #308d33;
 }
 
 /* Submit button */
