@@ -7,7 +7,7 @@ function Profile() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/getjobs", {
+      .get("http://localhost:3000/api/getrecentjobs", {
         responseType: "json",
       })
       .then((response) => {
