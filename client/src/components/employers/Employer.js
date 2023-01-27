@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import NavBar from "../navigationBar/NavBar";
 
@@ -27,6 +27,7 @@ function Employer() {
         apply_link: jobLink,
         date: formattedDate,
         contact: JSON.stringify([{ email: email, phone: phoneNumber }]),
+        userId: window.localStorage.getItem("userId"),
       })
       .then((response) => {
         console.log(response);
@@ -39,15 +40,12 @@ function Employer() {
   };
 
   return (
-    <div className="signup-body">
+    <div className="jobAddition">
       {<NavBar />}
-
-      <form
-        data-testid="signup-form"
-        className="signup-container"
-        onSubmit={register}
-      >
+      <form className="signup-container" onSubmit={register}>
         <link rel="stylesheet" href="signup.css"></link>
+        <link rel="stylesheet" href="Employer.css"></link>
+
         <link
           rel="stylesheet"
           type="text/css"

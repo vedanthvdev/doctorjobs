@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function LoginForm({ setUser, error, setError }) {
+function LoginForm({ setUser }) {
   let navigate = useNavigate();
+
+  const [error, setError] = useState();
 
   const [details, setDetails] = useState({ email: "", password: "" });
 
@@ -26,12 +28,14 @@ function LoginForm({ setUser, error, setError }) {
         if (!response.data.message) {
           console.log("Successfully Logged in! Welcom to your future");
           window.localStorage.setItem("isLoggedIn", true);
+
           setUser({
             email: details.email,
             password: details.password,
           });
           setError("");
           navigate("/profile");
+          window.localStorage.setItem("userId", response.data[0].u_id);
         } else {
           console.log("The details don't match");
           setError("The details don't match");
