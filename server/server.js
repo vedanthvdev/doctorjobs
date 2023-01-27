@@ -40,10 +40,11 @@ app.post("/api/registerjob", (req, res) => {
   const apply_link = req.body.apply_link;
   const date = req.body.date;
   const contact = req.body.contact;
+  const userId = req.body.userId;
 
   db.query(
-    "INSERT INTO jobs (j_title, j_company, j_location, j_type, j_link, j_date, j_contact) VALUES (?,?,?,?,?,?,?)",
-    [title, company, location, job_type, apply_link, date, contact],
+    "INSERT INTO jobs (j_title, j_company, j_location, j_type, j_link, j_date, j_contact, j_u_id) VALUES (?,?,?,?,?,?,?,?)",
+    [title, company, location, job_type, apply_link, date, contact, userId],
     (err, result) => {
       console.log(err);
     }
@@ -72,6 +73,23 @@ app.post("/api/authenticate", (req, res) => {
   );
 });
 
+// Get User Details
+app.post("/api/getuser", (req, res) => {
+  const id = req.body.id;
+
+  db.query("SELECT * FROM users WHERE u_id = ?", [id], (err, result) => {
+    if (err) {
+      res.send({ err: err });
+    }
+
+    if (result.length > 0) {
+      res.send(result);
+    } else {
+      res.send({ message: "Cannot find the User" });
+    }
+  });
+});
+
 // Check if the Email is present in the database
 app.post("/api/forgotpassword", (req, res) => {
   const email = req.body.email;
@@ -89,7 +107,44 @@ app.post("/api/forgotpassword", (req, res) => {
   });
 });
 
-//Get all the jobs
+//Get all user Uploaded jobs
+app.post("/api/getuseruploadedjobs", (req, res) => {
+  const userId = req.body.userId;
+  db.query(
+    'SELECT json_arrayagg(JSON_OBJECT("id", j_id, "title", j_title, "company", j_company, "location", j_location, "job_type", j_type, "apply_link", j_link, "contact", j_contact)) as job FROM LoginSystem.jobs where j_u_id = ?;',
+    [userId],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send({ error: "Unable to fetch jobs" });
+        return;
+      }
+      if (result.length > 0) {
+        res.send(JSON.parse(result[0].job));
+      } else {
+        res.status(404).send({ error: "No jobs found" });
+      }
+    }
+  );
+});
+
+//Delete a job uploaded
+app.post("/api/deletejob", (req, res) => {
+  const userId = req.body.userId;
+  db.query(
+    "DELETE FROM LoginSystem.jobs WHERE j_id = ?",
+    [userId],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send({ error: "Unable to fetch jobs" });
+        return;
+      }
+    }
+  );
+});
+
+//Get user uploaded jobs
 app.get("/api/getjobs", (req, res) => {
   db.query(
     'SELECT json_arrayagg(JSON_OBJECT("id", j_id, "title", j_title, "company", j_company, "location", j_location, "job_type", j_type, "apply_link", j_link, "contact", j_contact)) as job FROM LoginSystem.jobs;',

@@ -310,3 +310,8 @@ input[type="submit"]:hover {
 #Light .switch label {
   color: #000000e6;
 }
+
+body {
+  display: block;
+  margin: 0px;
+}

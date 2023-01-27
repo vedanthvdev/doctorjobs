@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import "./DarkApp.css";
 
 import "./components/profile/Profile.css";
 import "./components/navigationBar/NavBar.css";
 import "./components/signup/SignUp.css";
+import "./components/employers/Employer.css";
 import Profile from "./components/profile/Profile";
 import LoginForm from "./components/login/LoginForm";
 import { Navigate, Routes, Route } from "react-router-dom";
@@ -14,21 +15,26 @@ import ReactSwitch from "react-switch";
 import ForgotPassword from "./components/forgotPassword/ForgotPassword";
 import Jobs from "./components/jobs/Jobs";
 import Employer from "./components/employers/Employer";
+import ViewMyJobs from "./components/employers/ViewMyJobs";
 
 export const ThemeContext = createContext(null);
 
 function App() {
-  const [theme, setTheme] = useState("Light");
+  const [theme, setTheme] = useState(
+    window.localStorage.getItem("theme") || "Light"
+  );
+
+  useEffect(() => {
+    window.localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  useEffect(() => {
+    window.localStorage.setItem("theme", theme);
+  }, [theme]);
 
   const [user, setUser] = useState({ email: "", password: "" });
-  const [error, setError] = useState();
 
   const loggedIn = window.localStorage.getItem("isLoggedIn");
-
-  const Logout = (details) => {
-    console.log(details);
-    setUser({ email: "", password: "" });
-  };
 
   const toggleTheme = () => {
     setTheme((current) => (current === "Light" ? "Dark" : "Light"));
@@ -43,29 +49,24 @@ function App() {
           <Route
             exact
             path="/login"
-            element={
-              <LoginForm setUser={setUser} error={error} setError={setError} />
-            }
+            element={<LoginForm setUser={setUser} />}
           />
           <Route
             exact
             path="/profile"
-            element={
-              loggedIn ? (
-                <Profile
-                // user={user}
-                // Logout={Logout}
-                />
-              ) : (
-                <Navigate to="/login" />
-              )
-            }
+            element={loggedIn ? <Profile /> : <Navigate to="/login" />}
           />
           <Route exact path="/signup" element={<SignUp />} />
           <Route
             exact
             path="/employer"
             element={loggedIn ? <Employer /> : <Navigate to="/login" />}
+          />
+
+          <Route
+            exact
+            path="/viewmyjobs"
+            element={loggedIn ? <ViewMyJobs /> : <Navigate to="/login" />}
           />
 
           <Route

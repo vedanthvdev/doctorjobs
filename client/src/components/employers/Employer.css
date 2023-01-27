@@ -1,0 +1,89 @@
+#addJobs,
+#viewMyjobs {
+  position: relative;
+  margin-top: 10px;
+  top: 120px;
+  left: 5px;
+}
+.hiddens {
+  display: none;
+}
+
+.addingJobs,
+.viewAddedJobs {
+  display: none;
+}
+
+.shows {
+  display: block;
+}
+
+#delete-job {
+  position: relative;
+  z-index: 100;
+}
+
+.addingJobs {
+  width: 400px;
+  margin: 150px auto;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  opacity: 0.9;
+}
+
+.jobAddition {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.deleteJob {
+  position: absolute;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.modal-overlay .modal-content #close-modal {
+  position: absolute;
+  cursor: pointer;
+  margin: 2px 2px;
+
+  border-radius: 8px;
+  top: 10px;
+  right: 10px;
+}
+
+#Light .deleteJob {
+  background-color: white;
+  color: #bc0f0f;
+}
+
+#Dark .deleteJob {
+  background-color: #1d2226;
+  color: #bc0f0f;
+  border: 2px solid #848884;
+}
+
+.modal-delete-overlay.show {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s linear 0s, opacity 0.3s linear;
+}
+.modal-delete-overlay.hide {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s linear 0.3s, opacity 0;
+}
+
+.modal-delete-overlay .modal-delete-content #close-modal {
+  position: absolute;
+  cursor: pointer;
+  margin: 2px 2px;
+
+  border-radius: 8px;
+  top: 10px;
+  right: 10px;
+}
