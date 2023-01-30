@@ -14,8 +14,8 @@ const routerSetup = () => {
 
 const setup = () => {
   const utils = routerSetup();
-  const inputEmail = utils.getByPlaceholderText("Email");
-  const inputPassword = utils.getByPlaceholderText("Password");
+  const inputEmail = utils.getByPlaceholderText("Email*");
+  const inputPassword = utils.getByPlaceholderText("Password*");
   const submitBtn = utils.getByText("Log In");
 
   return {
@@ -29,8 +29,8 @@ const setup = () => {
 describe("LoginForm", () => {
   it("displays the correct form inputs", () => {
     const { getByPlaceholderText, getByTestId } = routerSetup();
-    const emailInput = getByPlaceholderText("Email");
-    const passwordInput = getByPlaceholderText("Password");
+    const emailInput = getByPlaceholderText("Email*");
+    const passwordInput = getByPlaceholderText("Password*");
     const submitButton = getByTestId("submit");
 
     expect(emailInput).toBeInTheDocument();

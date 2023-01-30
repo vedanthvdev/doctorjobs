@@ -5,6 +5,8 @@ import "./DarkApp.css";
 import "./components/profile/Profile.css";
 import "./components/navigationBar/NavBar.css";
 import "./components/signup/SignUp.css";
+import "./components/Toast/Toast.css";
+
 import "./components/employers/Employer.css";
 import Profile from "./components/profile/Profile";
 import LoginForm from "./components/login/LoginForm";
@@ -16,6 +18,7 @@ import ForgotPassword from "./components/forgotPassword/ForgotPassword";
 import Jobs from "./components/jobs/Jobs";
 import Employer from "./components/employers/Employer";
 import ViewMyJobs from "./components/employers/ViewMyJobs";
+import Toast from "./components/Toast/Toast";
 
 export const ThemeContext = createContext(null);
 

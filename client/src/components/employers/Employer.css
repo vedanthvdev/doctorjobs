@@ -41,8 +41,11 @@
 }
 
 .deleteJob {
-  position: absolute;
+  position: relative;
   margin-left: 20px;
+  /* left: 50px;
+  bottom: 180px; */
+  padding-top: 2px;
   cursor: pointer;
 }
 
@@ -58,12 +61,12 @@
 
 #Light .deleteJob {
   background-color: white;
-  color: #bc0f0f;
+  color: #848884;
 }
 
 #Dark .deleteJob {
   background-color: #1d2226;
-  color: #bc0f0f;
+  color: #848884;
   border: 2px solid #848884;
 }
 
@@ -86,4 +89,19 @@
   border-radius: 8px;
   top: 10px;
   right: 10px;
+}
+
+.addjob-container {
+  width: 400px;
+  margin: 120px auto;
+  padding: 20px;
+  background-color: #73a6e0;
+  border-radius: 10px;
+  text-align: center;
+  opacity: 0.9;
+}
+
+#confirm-delete-modal {
+  align-items: center;
+  right: 0px;
 }

@@ -80,6 +80,7 @@ function NavBar() {
             onClick={() => {
               window.localStorage.removeItem("isLoggedIn");
               window.localStorage.removeItem("userId");
+              document.getElementById("signInDIv").hidden = false;
             }}
           >
             Log Out
