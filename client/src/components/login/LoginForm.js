@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import jwt_decode from "jwt-decode";
 
 function LoginForm({ setUser }) {
   let navigate = useNavigate();
@@ -92,7 +93,7 @@ function LoginForm({ setUser }) {
                 required
                 value={details.email}
                 onChange={handleChange}
-                placeholder="Email"
+                placeholder="Email*"
                 data-testid="email"
               />
             </label>
@@ -108,7 +109,7 @@ function LoginForm({ setUser }) {
                 required
                 value={details.password}
                 onChange={handleChange}
-                placeholder="Password"
+                placeholder="Password*"
                 data-testid="password"
               />
             </label>
@@ -131,6 +132,7 @@ function LoginForm({ setUser }) {
           </a>
         </form>
       </div>
+      <div id="signInDIv"></div>
     </div>
   );
 }

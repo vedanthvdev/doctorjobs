@@ -127,7 +127,9 @@ function ViewMyJobs() {
                 <h4>{job.title}</h4>
                 <p>{job.company}</p>
                 <p>{job.location}</p>
-                <p>{job.job_type}</p>
+                <p>
+                  {job.job_type} {job.job_salary}
+                </p>
                 {job.apply_link && (
                   <a href={job.apply_link} className="apply-link">
                     Apply Now

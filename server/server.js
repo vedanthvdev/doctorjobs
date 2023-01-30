@@ -21,10 +21,12 @@ app.post("/api/signup", (req, res) => {
   const lastname = req.body.lastname;
   const email = req.body.email;
   const password = req.body.password;
+  const gender = req.body.gender;
+  const dob = req.body.dob;
 
   db.query(
-    "INSERT INTO users (u_firstname, u_lastname, u_email, u_password) VALUES (?,?,?,?)",
-    [firstname, lastname, email, password],
+    "INSERT INTO users (u_firstname, u_lastname, u_email, u_password, u_gender, u_dob) VALUES (?,?,?,?,?,?)",
+    [firstname, lastname, email, password, gender, dob],
     (err, result) => {
       console.log(err);
     }
@@ -41,10 +43,21 @@ app.post("/api/registerjob", (req, res) => {
   const date = req.body.date;
   const contact = req.body.contact;
   const userId = req.body.userId;
+  const jobSalary = req.body.jobSalary;
 
   db.query(
-    "INSERT INTO jobs (j_title, j_company, j_location, j_type, j_link, j_date, j_contact, j_u_id) VALUES (?,?,?,?,?,?,?,?)",
-    [title, company, location, job_type, apply_link, date, contact, userId],
+    "INSERT INTO jobs (j_title, j_company, j_location, j_type, j_link, j_date, j_contact, j_u_id, j_salary) VALUES (?,?,?,?,?,?,?,?,?)",
+    [
+      title,
+      company,
+      location,
+      job_type,
+      apply_link,
+      date,
+      contact,
+      userId,
+      jobSalary,
+    ],
     (err, result) => {
       console.log(err);
     }
@@ -71,6 +84,23 @@ app.post("/api/authenticate", (req, res) => {
       }
     }
   );
+});
+
+// Check if email exists
+app.post("/api/emailalreadyregistered", (req, res) => {
+  const email = req.body.email;
+
+  db.query("SELECT * FROM users WHERE u_email = ?", [email], (err, result) => {
+    if (err) {
+      res.send({ err: err });
+    }
+
+    if (result.length > 0) {
+      res.send(result);
+    } else {
+      res.send({ message: "Cannot find the User" });
+    }
+  });
 });
 
 // Get User Details
@@ -111,7 +141,7 @@ app.post("/api/forgotpassword", (req, res) => {
 app.post("/api/getuseruploadedjobs", (req, res) => {
   const userId = req.body.userId;
   db.query(
-    'SELECT json_arrayagg(JSON_OBJECT("id", j_id, "title", j_title, "company", j_company, "location", j_location, "job_type", j_type, "apply_link", j_link, "contact", j_contact)) as job FROM LoginSystem.jobs where j_u_id = ?;',
+    'SELECT json_arrayagg(JSON_OBJECT("id", j_id, "title", j_title, "company", j_company, "location", j_location, "job_type", j_type, "apply_link", j_link, "contact", j_contact, "job_salary", j_salary)) as job FROM LoginSystem.jobs where j_u_id = ?;',
     [userId],
     (err, result) => {
       if (err) {
@@ -147,7 +177,7 @@ app.post("/api/deletejob", (req, res) => {
 //Get user uploaded jobs
 app.get("/api/getjobs", (req, res) => {
   db.query(
-    'SELECT json_arrayagg(JSON_OBJECT("id", j_id, "title", j_title, "company", j_company, "location", j_location, "job_type", j_type, "apply_link", j_link, "contact", j_contact)) as job FROM LoginSystem.jobs;',
+    'SELECT json_arrayagg(JSON_OBJECT("id", j_id, "title", j_title, "company", j_company, "location", j_location, "job_type", j_type, "apply_link", j_link, "contact", j_contact, "job_salary", j_salary)) as job FROM LoginSystem.jobs;',
     (err, result) => {
       if (err) {
         console.log(err);
@@ -166,7 +196,7 @@ app.get("/api/getjobs", (req, res) => {
 //Get recent 10 jobs
 app.get("/api/getrecentjobs", (req, res) => {
   db.query(
-    'SELECT json_arrayagg(JSON_OBJECT("id", j_id, "title", j_title, "company", j_company, "location", j_location, "job_type", j_type, "apply_link", j_link, "contact", j_contact)) as job FROM (SELECT * FROM LoginSystem.jobs ORDER BY j_date DESC LIMIT 10) as sorted_jobs;',
+    'SELECT json_arrayagg(JSON_OBJECT("id", j_id, "title", j_title, "company", j_company, "location", j_location, "job_type", j_type, "apply_link", j_link, "contact", j_contact, "job_salary", j_salary)) as job FROM (SELECT * FROM LoginSystem.jobs ORDER BY j_date DESC LIMIT 10) as sorted_jobs;',
     (err, result) => {
       if (err) {
         console.log(err);

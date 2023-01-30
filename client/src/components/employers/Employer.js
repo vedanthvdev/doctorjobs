@@ -8,6 +8,7 @@ function Employer() {
   const [jobLocation, setJobLocation] = useState("");
   const [jobType, setJobType] = useState("Full-time");
   const [jobLink, setJobLink] = useState("");
+  const [jobSalary, setJobSalary] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [success, setSuccess] = useState("");
@@ -25,6 +26,7 @@ function Employer() {
         location: jobLocation,
         job_type: jobType,
         apply_link: jobLink,
+        jobSalary: jobSalary,
         date: formattedDate,
         contact: JSON.stringify([{ email: email, phone: phoneNumber }]),
         userId: window.localStorage.getItem("userId"),
@@ -41,16 +43,16 @@ function Employer() {
 
   return (
     <div className="jobAddition">
-      {<NavBar />}
-      <form className="signup-container" onSubmit={register}>
-        <link rel="stylesheet" href="signup.css"></link>
-        <link rel="stylesheet" href="Employer.css"></link>
+      <link rel="stylesheet" href="signup.css"></link>
+      <link rel="stylesheet" href="Employer.css"></link>
 
-        <link
-          rel="stylesheet"
-          type="text/css"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-        ></link>
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      ></link>
+      {<NavBar />}
+      <form className="addjob-container" onSubmit={register}>
         <h3>Add Job</h3>
 
         <label type="add-job" id="job">
@@ -64,7 +66,7 @@ function Employer() {
               setJobTitle(e.target.value);
             }}
             required
-            placeholder="Job Title"
+            placeholder="Job Title*"
           />
         </label>
         <br />
@@ -79,7 +81,7 @@ function Employer() {
             onChange={(e) => {
               setJobCompany(e.target.value);
             }}
-            placeholder="Company"
+            placeholder="Company*"
           />
         </label>
         <br />
@@ -95,7 +97,7 @@ function Employer() {
             onChange={(e) => {
               setJobLocation(e.target.value);
             }}
-            placeholder="Location"
+            placeholder="Location*"
           />
         </label>
         <br />
@@ -105,12 +107,27 @@ function Employer() {
             <i className="fa-solid fa-link"></i>
           </span>
           <input
-            type="text"
+            type="url"
             id="job-link"
             onChange={(e) => {
               setJobLink(e.target.value);
             }}
             placeholder="Link to apply"
+          />
+        </label>
+        <br />
+
+        <label type="add-job">
+          <span className="icon">
+            <i className="fa-solid fa-link"></i>
+          </span>
+          <input
+            type="number"
+            id="job-salary"
+            onChange={(e) => {
+              setJobSalary(e.target.value);
+            }}
+            placeholder="Salary"
           />
         </label>
         <br />
@@ -153,9 +170,9 @@ function Employer() {
               setJobType(event.target.value);
             }}
           >
-            <option value="Full-time">Full-time</option>
-            <option value="Part-time">Part-time</option>
-            <option value="Locum">Locum</option>
+            <option value="Full-time">Full-time*</option>
+            <option value="Part-time">Part-time*</option>
+            <option value="Locum">Locum*</option>
           </select>
         </label>
 

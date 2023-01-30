@@ -4,9 +4,15 @@
 
 #Light {
   position: absolute;
-  height: 150vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
   background-color: #f3f2ef;
+}
+
+.App {
+  height: 2000px; /* set to a large enough value */
+  width: 100%;
 }
 
 /* Form container */
@@ -78,6 +84,9 @@ label {
 /* Input fields */
 input[type="text"],
 input[type="email"],
+input[type="date"],
+input[type="number"],
+input[type="url"],
 input[type="password"] {
   width: 100%;
   padding: 12px 20px;
@@ -85,6 +94,47 @@ input[type="password"] {
   box-sizing: border-box;
   border-radius: 16px;
   font-size: 18px;
+  transition: all 0.2s ease-in-out;
+  padding-left: 40px;
+}
+
+input[type="radio"] {
+  position: absolute;
+  cursor: pointer;
+  float: right;
+}
+
+select {
+  transition: all 0.2s ease-in-out;
+  padding-left: 40px;
+  box-sizing: border-box;
+  border-radius: 16px;
+}
+
+#gender_male,
+#gender_female,
+#gender_other {
+  width: 33%;
+  display: inline-block;
+  align-content: center;
+  padding: 12px 20px;
+  margin-bottom: auto;
+  box-sizing: border-box;
+  border-radius: 16px;
+  font-size: 18px;
+  font-weight: normal;
+}
+
+#Light #gender_male,
+#gender_female,
+#gender_other {
+  color: #848884;
+  background-color: #fff;
+  border: 2px solid #848884;
+}
+
+#Light input[type="date"] {
+  color: #848884;
 }
 
 #Light input {
@@ -101,11 +151,25 @@ input[type="password"] {
 /* Input hover color change*/
 input[type="text"]:hover,
 input[type="email"]:hover,
+input[type="date"]:hover,
 input[type="password"]:hover,
+input[type="number"]:hover,
+input[type="url"]:hover,
 select:hover {
   transform: scale(1.02);
   border-radius: 20px;
   border-radius: 20px;
+}
+
+#gender_male:hover,
+#gender_female:hover,
+#gender_other:hover {
+  cursor: pointer;
+  transform: scale(1.02);
+  border-radius: 20px;
+  border-radius: 20px;
+  background-color: #b0e4b9;
+  border-color: #4caf50;
 }
 
 #Light input:hover {
@@ -120,15 +184,6 @@ select:hover {
 
 /* Input hover animation*/
 /* Add padding to input fields to make space for the icon */
-input[type="text"],
-input[type="email"],
-input[type="password"],
-select {
-  transition: all 0.2s ease-in-out;
-  padding-left: 40px;
-  box-sizing: border-box;
-  border-radius: 16px;
-}
 
 /* Add css for the email and lock icon */
 span.icon i {
