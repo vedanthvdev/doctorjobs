@@ -121,7 +121,7 @@ function LoginForm({ setUser }) {
               href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
             ></link>
             <h3 type="company" id="company-header">
-              Doctors Job
+              Hospital Jobs
             </h3>
 
             <label className="label-text">
