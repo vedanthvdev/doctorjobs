@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import NavBar from "../navigationBar/NavBar";
+import { ipAddress } from "../../address";
 
 function ViewMyJobs() {
   const [jobs, setJobs] = useState("");
 
   const handleDelete = () => {
     axios
-      .post("http://localhost:3000/api/deletejob", {
+      .post(ipAddress + "/api/deletejob", {
         userId: deleteJobId,
       })
       .catch((error) => {
@@ -94,7 +95,7 @@ function ViewMyJobs() {
 
   useEffect(() => {
     axios
-      .post("http://localhost:3000/api/getuseruploadedjobs", {
+      .post(ipAddress + "/api/getuseruploadedjobs", {
         userId: window.localStorage.getItem("userId"),
       })
       .then((response) => {

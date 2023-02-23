@@ -16,3 +16,10 @@
   text-align: center;
   opacity: 0.9;
 }
+
+@media only screen and (max-width: 500px) {
+  .signup-container {
+    width: 300px;
+    margin: 110px auto;
+  }
+}

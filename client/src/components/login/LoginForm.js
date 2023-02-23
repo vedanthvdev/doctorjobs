@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import jwt_decode from "jwt-decode";
+import { LoginSocialFacebook } from "reactjs-social-login";
+import { FacebookLoginButton } from "react-social-login-buttons";
+import { ipAddress } from "../../address";
 
 function LoginForm({ setUser }) {
   let navigate = useNavigate();
@@ -17,32 +19,72 @@ function LoginForm({ setUser }) {
     });
   };
 
-  const LoginUser = (details) => {
-    console.log(details);
+  function facebookLogin(response) {
+    // setProfile(response);
+    checkUserAlreadyRegistered(response);
+  }
 
+  function checkUserAlreadyRegistered(fresponse) {
+    // e.preventDefault();
     axios
-      .post("http://localhost:3000/api/authenticate", {
+      .post(ipAddress + "/api/emailalreadyregistered", {
+        email: fresponse.email,
+      })
+      .then((response) => {
+        if (!response.data.message) {
+          loginSuccess(response);
+        } else {
+          // Ask facebook for more information for dob and
+          signUpUserFb(fresponse);
+        }
+      });
+  }
+
+  function signUpUserFb(response) {
+    axios
+      .post(ipAddress + "/api/signup", {
+        firstname: response.first_name,
+        lastname: response.last_name,
+        email: response.email,
+        password: "facebookpas",
+        // gender: regGender,
+        // dob: regDob,
+      })
+      .then((response) => {
+        console.log(response);
+        facebookLogin(response);
+        // setShowToast(true);
+      });
+  }
+
+  const LoginUser = (details) => {
+    axios
+      .post(ipAddress + "/api/authenticate", {
         email: details.email,
         password: details.password,
       })
       .then((response) => {
         if (!response.data.message) {
-          console.log("Successfully Logged in! Welcom to your future");
-          window.localStorage.setItem("isLoggedIn", true);
-
-          setUser({
-            email: details.email,
-            password: details.password,
-          });
-          setError("");
-          navigate("/profile");
-          window.localStorage.setItem("userId", response.data[0].u_id);
+          loginSuccess(response);
         } else {
           console.log("The details don't match");
           setError("The details don't match");
         }
       });
   };
+
+  function loginSuccess(response) {
+    console.log("Successfully Logged in! Welcom to your future");
+    window.localStorage.setItem("isLoggedIn", true);
+    window.localStorage.setItem("userId", response.data[0].u_id);
+
+    setUser({
+      email: details.email,
+      password: details.password,
+    });
+    setError("");
+    navigate("/profile");
+  }
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -115,12 +157,14 @@ function LoginForm({ setUser }) {
             </label>
             {/* {error !== "" ? <div className="errorValue">{error}</div> : ""} */}
             <br />
-            <input
+            <button
               data-testid="submit"
               type="submit"
               value="Log In"
               id="submit"
-            />
+            >
+              Log In
+            </button>
           </div>
           <div id="forgot-password-container">
             <a href="/forgotpassword" id="forgot-password">
@@ -130,6 +174,20 @@ function LoginForm({ setUser }) {
           <a href="/signup" id="signup-link">
             Sign Up
           </a>
+          <br />
+          <LoginSocialFacebook
+            appId="686903669782616"
+            autoLoad={true}
+            onResolve={(response) => {
+              console.log(response);
+              facebookLogin(response.data);
+            }}
+            onReject={(error) => {
+              console.log(error);
+            }}
+          >
+            <FacebookLoginButton />
+          </LoginSocialFacebook>
         </form>
       </div>
       <div id="signInDIv"></div>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import NavBar from "../navigationBar/NavBar";
+import { ipAddress } from "../../address";
 
 function Profile() {
   const [jobs, setJobs] = useState([]);
@@ -39,7 +40,7 @@ function Profile() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/getrecentjobs", {
+      .get(ipAddress + "/api/getrecentjobs", {
         responseType: "json",
       })
       .then((response) => {

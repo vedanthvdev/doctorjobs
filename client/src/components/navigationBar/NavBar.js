@@ -1,11 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import axios from "axios";
 
 function NavBar() {
   const [activeLink, setActiveLink] = useState(null);
-  const [user, setUser] = useState("");
 
   useEffect(() => {
     if (window.location.pathname === "/profile") {
@@ -16,21 +14,10 @@ function NavBar() {
       setActiveLink(2);
     } else if (window.location.pathname === "/viewmyjobs") {
       setActiveLink(3);
+    } else if (window.location.pathname === "/settings") {
+      setActiveLink(4);
     }
   }, [window.location.pathname]);
-
-  useEffect(() => {
-    axios
-      .post("http://localhost:3000/api/getuser", {
-        id: window.localStorage.getItem("userId"),
-      })
-      .then((response) => {
-        setUser(response.data[0]);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
 
   return (
     <div className="navbar">
@@ -51,7 +38,7 @@ function NavBar() {
                 <i className="fa-solid fa-suitcase"></i>
               </span>
               <br />
-              Jobs
+              All Jobs
             </a>
           </li>
           <li className={activeLink === 2 ? "active" : ""}>
@@ -60,7 +47,7 @@ function NavBar() {
                 <i className="fa-solid fa-network-wired"></i>{" "}
               </span>
               <br />
-              Employers
+              Add Job
             </a>
           </li>
           <li className={activeLink === 3 ? "active" : ""}>
@@ -69,25 +56,20 @@ function NavBar() {
                 <i className="fa-solid fa-book-journal-whills"></i>
               </span>
               <br />
-              Added Jobs
+              View My Jobs
             </a>
           </li>
-          <br />
-
-          <a
-            href="/login"
-            id="logout"
-            onClick={() => {
-              window.localStorage.removeItem("isLoggedIn");
-              window.localStorage.removeItem("userId");
-              document.getElementById("signInDIv").hidden = false;
-            }}
-          >
-            Log Out
-          </a>
+          <li className={activeLink === 4 ? "active" : ""}>
+            <a href="/settings">
+              <span className="nav-icon">
+                <i className="fa-solid fa-gear"></i>
+              </span>
+              <br />
+              Settings
+            </a>
+          </li>
         </ul>
-        <p id="welcomeUser">Welcome, {user.u_lastname}</p>
-      </nav>{" "}
+      </nav>
     </div>
   );
 }
