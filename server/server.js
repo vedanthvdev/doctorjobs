@@ -217,14 +217,14 @@ app.get("/api/getrecentjobs", (req, res) => {
 });
 
 // Configure HTTPS with SSL/TLS certificates
-const httpsOptions = {
-  cert: fs.readFileSync("../server/cert.pem"),
-  key: fs.readFileSync("../server/key.pem"),
-};
-https.createServer(httpsOptions, app).listen(PORT, () => {
-  console.log("running server on port - " + PORT);
-});
-
-// app.listen(PORT, () => {
+// const httpsOptions = {
+//   cert: fs.readFileSync("../server/cert.pem"),
+//   key: fs.readFileSync("../server/key.pem"),
+// };
+// https.createServer(httpsOptions, app).listen(PORT, () => {
 //   console.log("running server on port - " + PORT);
 // });
+
+app.listen(PORT, () => {
+  console.log("running server on port - " + PORT);
+});
