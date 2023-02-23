@@ -18,7 +18,7 @@ import ForgotPassword from "./components/forgotPassword/ForgotPassword";
 import Jobs from "./components/jobs/Jobs";
 import Employer from "./components/employers/Employer";
 import ViewMyJobs from "./components/employers/ViewMyJobs";
-import Toast from "./components/Toast/Toast";
+import Settings from "./components/settin/Settings";
 
 export const ThemeContext = createContext(null);
 
@@ -26,6 +26,9 @@ function App() {
   const [theme, setTheme] = useState(
     window.localStorage.getItem("theme") || "Light"
   );
+  const toggleTheme = () => {
+    setTheme((current) => (current === "Light" ? "Dark" : "Light"));
+  };
 
   useEffect(() => {
     window.localStorage.setItem("theme", theme);
@@ -38,10 +41,6 @@ function App() {
   const [user, setUser] = useState({ email: "", password: "" });
 
   const loggedIn = window.localStorage.getItem("isLoggedIn");
-
-  const toggleTheme = () => {
-    setTheme((current) => (current === "Light" ? "Dark" : "Light"));
-  };
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
@@ -76,6 +75,12 @@ function App() {
             exact
             path="/jobs"
             element={loggedIn ? <Jobs /> : <Navigate to="/login" />}
+          />
+
+          <Route
+            exact
+            path="/settings"
+            element={loggedIn ? <Settings /> : <Navigate to="/login" />}
           />
 
           <Route exact path="/forgotpassword" element={<ForgotPassword />} />

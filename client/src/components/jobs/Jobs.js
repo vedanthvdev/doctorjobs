@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import NavBar from "../navigationBar/NavBar";
+import { ipAddress } from "../../address";
 
 function Jobs() {
   const [jobs, setJobs] = useState([]);
@@ -44,7 +45,7 @@ function Jobs() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/getjobs", {
+      .get(ipAddress + "/api/getjobs", {
         responseType: "json",
       })
       .then((response) => {
@@ -136,7 +137,9 @@ function Jobs() {
             </select>
           </label>
 
-          <input type="submit" value="Filter" id="filter-submit" />
+          <button type="submit" value="Filter" id="filter-submit">
+            Filter
+          </button>
         </form>
       </div>
       <br />

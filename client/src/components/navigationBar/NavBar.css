@@ -21,15 +21,15 @@ nav ul {
   list-style: none;
   display: flex;
   margin-top: 5px;
-  margin-bottom: 0px;
-  padding: 5px 15px;
+  margin-bottom: auto;
+  padding: 5px 0px;
 }
 
 nav li {
   margin: 100 10;
   margin-right: 10px;
   flex: 1 0 calc(8% - 30px);
-  margin: 0 8px 20px;
+  margin: 0 6px 0px;
   padding: 8px;
   border-radius: 8px;
 }
@@ -100,11 +100,12 @@ nav span {
 
 #logout {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 50%;
+  right: 50%;
   padding: 10px 15px;
   font-weight: bold;
   font-size: 20px;
+  align-items: center;
   text-decoration: none;
   border-radius: 20px;
   transition: all 0.2s ease-in-out;
@@ -132,13 +133,4 @@ nav span {
 #logout:hover {
   transform: scale(1.03);
   border-radius: 20px;
-}
-
-#welcomeUser {
-  font-weight: bold;
-  position: absolute;
-  top: 10px;
-  right: 10%;
-  padding: 10px 15px;
-  z-index: -1;
 }

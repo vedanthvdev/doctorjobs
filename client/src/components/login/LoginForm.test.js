@@ -1,6 +1,6 @@
 import React from "react";
 
-import { render, fireEvent, cleanup, waitFor } from "@testing-library/react";
+import { render, fireEvent, cleanup } from "@testing-library/react";
 import LoginForm from "./LoginForm";
 import { withRouter } from "../../setupTests";
 

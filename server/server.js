@@ -1,6 +1,8 @@
 const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
+const https = require("https");
+const fs = require("fs");
 const PORT = 3000;
 
 const app = express();
@@ -64,7 +66,7 @@ app.post("/api/registerjob", (req, res) => {
   );
 });
 
-// Check if the user is present in the database
+// authenticate user
 app.post("/api/authenticate", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
@@ -76,8 +78,10 @@ app.post("/api/authenticate", (req, res) => {
       if (err) {
         res.send({ err: err });
       }
+      console.log("reaching");
 
       if (result.length > 0) {
+        console.log(result);
         res.send(result);
       } else {
         res.send({ message: "Wrong username/password" });
@@ -212,6 +216,15 @@ app.get("/api/getrecentjobs", (req, res) => {
   );
 });
 
+// Configure HTTPS with SSL/TLS certificates
+// const httpsOptions = {
+//   cert: fs.readFileSync("../server/cert.pem"),
+//   key: fs.readFileSync("../server/key.pem"),
+// };
+// https.createServer(httpsOptions, app).listen(PORT, () => {
+//   console.log("running server on port - " + PORT);
+// });
+
 app.listen(PORT, () => {
-  console.log("running server");
+  console.log("running server on port - " + PORT);
 });

@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Hospital Jobs",
+  "name": "Jobs for people wanting work in a medical field",
   "icons": [
     {
       "src": "favicon.ico",

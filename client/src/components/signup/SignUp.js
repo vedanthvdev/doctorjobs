@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Toast from "../Toast/Toast";
+import { ipAddress } from "../../address";
 
 function SignUp() {
   let navigate = useNavigate();
@@ -28,7 +29,7 @@ function SignUp() {
 
   const register = () => {
     axios
-      .post("http://localhost:3000/api/signup", {
+      .post(ipAddress + "/api/signup", {
         firstname: regFirstName,
         lastname: regLastName,
         email: regEmail,
@@ -45,7 +46,7 @@ function SignUp() {
   function checkUserAlreadyRegistered(e) {
     e.preventDefault();
     axios
-      .post("http://localhost:3000/api/emailalreadyregistered", {
+      .post(ipAddress + "/api/emailalreadyregistered", {
         email: regEmail,
       })
       .then((response) => {
@@ -250,7 +251,9 @@ function SignUp() {
         {error && <div className="errorValue">{error}</div>}
 
         <br />
-        <input id="submit" type="submit" value="Submit" />
+        <button id="submit" type="submit" value="Submit">
+          Submit
+        </button>
         <a href="/login" id="back-to-login">
           Back to login
         </a>

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import NavBar from "../navigationBar/NavBar";
+import { ipAddress } from "../../address";
 
 function Employer() {
   const [jobTitle, setJobTitle] = useState("");
@@ -20,7 +21,7 @@ function Employer() {
     const formattedDate = date.toISOString().slice(0, 19).replace("T", " ");
 
     axios
-      .post("http://localhost:3000/api/registerjob", {
+      .post(ipAddress + "/api/registerjob", {
         title: jobTitle,
         company: jobCompany,
         location: jobLocation,
@@ -179,7 +180,9 @@ function Employer() {
         {success && <div className="successValue">{success}</div>}
 
         <br />
-        <input id="submit" type="submit" value="Submit" />
+        <button id="submit" type="submit" value="Submit">
+          Register
+        </button>
       </form>
     </div>
   );

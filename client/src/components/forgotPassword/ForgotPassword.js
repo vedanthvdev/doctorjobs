@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { ipAddress } from "../../address";
 
 function ForgotPassword() {
   let navigate = useNavigate();
@@ -11,7 +12,7 @@ function ForgotPassword() {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post("http://localhost:3000/api/forgotpassword", {
+      .post(ipAddress + "/api/forgotpassword", {
         email: email,
       })
       .then((response) => {
@@ -53,12 +54,14 @@ function ForgotPassword() {
         {error !== "" ? <div className="error-message">{error}</div> : ""}
         {success !== "" ? <div className="success-message">{success}</div> : ""}
         <br />
-        <input
+        <button
           data-testid="forgot-submit"
           type="submit"
           value="Submit"
           id="forgot-submit"
-        />{" "}
+        >
+          Submit
+        </button>
         <br />
         <a href="/login" id="back-to-login">
           Back to login
