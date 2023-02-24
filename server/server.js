@@ -13,6 +13,7 @@ app.use(cors());
 const db = mysql.createConnection({
   user: "root",
   host: "loginsystem.c8yzldilma0u.ap-southeast-1.rds.amazonaws.com",
+  // host: "localhost",
   password: "password",
   database: "LoginSystem",
 });
@@ -78,10 +79,8 @@ app.post("/api/authenticate", (req, res) => {
       if (err) {
         res.send({ err: err });
       }
-      console.log("reaching");
 
       if (result.length > 0) {
-        console.log(result);
         res.send(result);
       } else {
         res.send({ message: "Wrong username/password" });
