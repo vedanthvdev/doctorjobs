@@ -1,1 +1,2 @@
-export const ipAddress = "https://80.41.168.192:3000";
+export const ipAddress = "https://hospital-job-server.onrender.com";
+// export const ipAddress = "http://localhost:3000";
