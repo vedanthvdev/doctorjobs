@@ -257,25 +257,7 @@ button[type="submit"]:hover {
 }
 
 button[type="submit"]:hover {
-  background: linear-gradient(to right, #edc965, #ec3f3f);
-}
-
-/* Forgot password link */
-#forgot-password-container a {
-  text-align: right;
-  font-size: 18px;
-  margin-top: 10px;
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-#Light #forgot-password-container a {
-  color: #848884;
-}
-
-/* Login Hover Transition effect */
-#forgot-password-container:hover {
-  transform: scale(1.03);
+  background: linear-gradient(to right, #77e35e, #06700d);
 }
 
 #back-to-login:hover {
@@ -306,7 +288,7 @@ button[type="submit"]:hover {
 }
 
 #Light #signup-link:hover {
-  background: linear-gradient(to right, #edc965, #ec3f3f);
+  background: linear-gradient(to right, #77e35e, #06700d);
 }
 
 /* Login Hover Transition effect */
@@ -373,11 +355,15 @@ body {
 }
 
 #welcomeUser {
-  font-weight: bold;
-  position: absolute;
+  position: fixed;
   top: 40%;
-  right: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  justify-content: center;
   padding: 10px 15px;
+  font-weight: bold;
+  font-size: 23px;
+  text-decoration: none;
 }
 
 @media only screen and (max-width: 500px) {

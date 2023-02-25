@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Toast from "../Toast/Toast";
 import { ipAddress } from "../../address";
 
 function SignUp() {
@@ -13,8 +12,6 @@ function SignUp() {
   const [regConfirmPassword, setConfirmPassword] = useState("");
   const [regGender, setRegGender] = useState("");
   const [regDob, setRegDob] = useState("");
-  const [userPresent, setUserPresent] = useState(false);
-  const [showToast, setShowToast] = useState(false);
 
   function yearsAgo(years) {
     const date = new Date();
@@ -39,7 +36,6 @@ function SignUp() {
       })
       .then((response) => {
         console.log(response);
-        setShowToast(true);
       });
   };
 
@@ -51,10 +47,8 @@ function SignUp() {
       })
       .then((response) => {
         if (!response.data.message) {
-          setUserPresent(true);
           setError("Email already exists...");
         } else {
-          setUserPresent(false);
           setError("");
           handleValidation(e);
         }
@@ -73,10 +67,6 @@ function SignUp() {
 
   return (
     <div className="signup-body">
-      {showToast && (
-        <Toast type="success" message="Customer created successfully!" />
-      )}
-
       <form
         data-testid="signup-form"
         className="signup-container"

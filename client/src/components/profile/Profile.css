@@ -5,11 +5,21 @@
   background-repeat: repeat-x 50;
 }
 
+.filter-jobs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 300px; /* or any other height that you want */
+}
+
 form[type="filter-job"] {
-  position: absolute;
-  width: 300px;
+  margin-top: 120px;
   height: 270px;
-  margin: 120px 20px;
+  position: absolute;
+  align-items: center;
+  align-content: center;
+  width: 300px;
+  justify-content: center;
   background-color: #f5f1f3;
   opacity: 0.9;
 }
@@ -32,22 +42,35 @@ label[type="job-type"] {
 }
 
 ul#jobs-list {
-  margin-top: 100px;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center; /* or "space-between", "space-evenly", etc. */
+  align-items: center;
+  align-content: center;
+  margin-top: 80px;
+  padding-inline-start: 0px;
+  margin-block-end: 0px;
 }
 
 form.jobs-available {
   width: 250px;
   height: 200px;
   flex-basis: 250px;
-  margin: 20px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-bottom: 5px;
+  margin-top: 8px;
+
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 ul#all-jobs-list {
-  margin-top: 400px;
+  margin-top: 115px;
+  padding-inline-start: 0px;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center; /* or "space-between", "space-evenly", etc. */
 }
 
 form.all-jobs-available {
@@ -55,6 +78,26 @@ form.all-jobs-available {
   height: 200px;
   flex-basis: 250px;
   margin: 20px;
+  margin-bottom: 5px;
+  justify-content: center; /* or "space-between", "space-evenly", etc. */
+
+  margin-top: 8px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.contact-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-button {
+  cursor: pointer;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .modal-overlay {
@@ -106,11 +149,6 @@ form.all-jobs-available {
   right: 10px;
 }
 
-.contact-button {
-  cursor: pointer;
-  margin-left: 20px;
-}
-
 #Light .contact-button {
   background-color: white;
   color: #1d2226;
@@ -128,4 +166,38 @@ form.all-jobs-available {
 
 #Dark .apply-link {
   color: #2479da;
+}
+
+@media only screen and (max-width: 500px) {
+  .filter-jobs {
+    margin-top: 310px; /* or any other height that you want */
+  }
+
+  ul#jobs-list {
+    margin-top: 100px;
+  }
+
+  form.all-jobs-available {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+
+  form.jobs-available {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+}
+
+@media only screen and (max-height: 500px) {
+  .filter-jobs {
+    margin-top: 250px; /* or any other height that you want */
+  }
+
+  ul#jobs-list {
+    margin-top: 80px;
+  }
+
+  ul#all-jobs-list {
+    margin-top: 150px;
+  }
 }

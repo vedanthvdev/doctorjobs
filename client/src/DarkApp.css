@@ -119,6 +119,10 @@ select:hover {
   color: white;
 }
 
+#Dark #update-password-container a {
+  color: white;
+}
+
 #Dark ::placeholder {
   color: white;
 }
