@@ -80,7 +80,7 @@ function Jobs() {
   }
 
   return (
-    <div className="signup-body">
+    <div className="filter-container">
       <link rel="stylesheet" href="profile.css"></link>
       <link
         rel="stylesheet"
@@ -142,6 +142,7 @@ function Jobs() {
           </button>
         </form>
       </div>
+
       <br />
 
       <ul id="all-jobs-list">
@@ -155,19 +156,21 @@ function Jobs() {
                 <p>
                   {job.job_type} {job.job_salary}
                 </p>
-                {job.apply_link && (
-                  <a href={job.apply_link} className="apply-link">
-                    Apply Now
-                  </a>
-                )}
-                {(job.contact[0].phone || job.contact[0].email) && (
-                  <button
-                    className="contact-button"
-                    onClick={(e) => openContactModal(e, job.contact[0])}
-                  >
-                    Contact
-                  </button>
-                )}
+                <div className="contact-section">
+                  {job.apply_link && (
+                    <a href={job.apply_link} className="apply-link">
+                      Apply Now
+                    </a>
+                  )}
+                  {(job.contact[0].phone || job.contact[0].email) && (
+                    <button
+                      className="contact-button"
+                      onClick={(e) => openContactModal(e, job.contact[0])}
+                    >
+                      Contact
+                    </button>
+                  )}
+                </div>
               </div>
             </form>
           ))

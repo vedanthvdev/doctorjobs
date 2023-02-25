@@ -143,7 +143,7 @@ function Employer() {
             onChange={(e) => {
               setEmail(e.target.value);
             }}
-            placeholder="Contact Email"
+            placeholder="Email Contact"
             style={{ display: "inline-block", width: "50%" }}
           />
           <span className="icon">
@@ -155,7 +155,7 @@ function Employer() {
             onChange={(e) => {
               setPhoneNumber(e.target.value);
             }}
-            placeholder="Contact Number"
+            placeholder="Phone Contact"
             style={{ display: "inline-block", width: "50%" }}
           />
         </label>

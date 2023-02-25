@@ -22,52 +22,53 @@ function ForgotPassword() {
           setError("");
           setSuccess("An email has been sent to your address");
           setTimeout(() => {
-            navigate("/login");
+            navigate("/updatepassword");
           }, 3000);
         }
+        setTimeout(() => {
+          setError("");
+        }, 2000);
       });
   };
 
   return (
-    <div className="forgot-password-container">
-      <form onSubmit={handleSubmit}>
-        <link
-          rel="stylesheet"
-          type="text/css"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-        ></link>
-        <link rel="stylesheet" href="App.css"></link>
-        <h3>Forgot Password</h3>
-        <label>
-          <span className="icon">
-            <i className="fa fa-envelope" aria-hidden="true"></i>
-          </span>
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            required
-          />
-        </label>
-        <br />
-        {error !== "" ? <div className="error-message">{error}</div> : ""}
-        {success !== "" ? <div className="success-message">{success}</div> : ""}
-        <br />
-        <button
-          data-testid="forgot-submit"
-          type="submit"
-          value="Submit"
-          id="forgot-submit"
-        >
-          Submit
-        </button>
-        <br />
-        <a href="/login" id="back-to-login">
-          Back to login
-        </a>
-      </form>
-    </div>
+    <form className="forgot-password-container" onSubmit={handleSubmit}>
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      ></link>
+      <link rel="stylesheet" href="App.css"></link>
+      <h3>Forgot Password</h3>
+      <label>
+        <span className="icon">
+          <i className="fa fa-envelope" aria-hidden="true"></i>
+        </span>
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+          required
+        />
+      </label>
+      <br />
+      {error !== "" ? <div className="errorValue">{error}</div> : ""}
+      {success !== "" ? <div className="successValue">{success}</div> : ""}
+      <br />
+      <button
+        data-testid="forgot-submit"
+        type="submit"
+        value="Submit"
+        id="forgot-submit"
+      >
+        Submit
+      </button>
+      <br />
+      <a href="/login" id="back-to-login">
+        Back to login
+      </a>
+    </form>
   );
 }
 

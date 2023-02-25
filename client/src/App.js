@@ -19,6 +19,7 @@ import Jobs from "./components/jobs/Jobs";
 import Employer from "./components/employers/Employer";
 import ViewMyJobs from "./components/employers/ViewMyJobs";
 import Settings from "./components/settin/Settings";
+import UpdatePassword from "./components/forgotPassword/UpdatePassword";
 
 export const ThemeContext = createContext(null);
 
@@ -84,6 +85,7 @@ function App() {
           />
 
           <Route exact path="/forgotpassword" element={<ForgotPassword />} />
+          <Route exact path="/updatepassword" element={<UpdatePassword />} />
         </Routes>
         <div className="switch">
           <label id="switch">
