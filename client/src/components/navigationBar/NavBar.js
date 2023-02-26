@@ -6,18 +6,20 @@ function NavBar() {
   const [activeLink, setActiveLink] = useState(null);
 
   useEffect(() => {
-    if (window.location.pathname === "/profile") {
+    const currentPathname = window.location.pathname;
+
+    if (currentPathname === "/profile") {
       setActiveLink(0);
-    } else if (window.location.pathname === "/jobs") {
+    } else if (currentPathname === "/jobs") {
       setActiveLink(1);
-    } else if (window.location.pathname === "/registerjob") {
+    } else if (currentPathname === "/registerjob") {
       setActiveLink(2);
-    } else if (window.location.pathname === "/viewmyjobs") {
+    } else if (currentPathname === "/viewmyjobs") {
       setActiveLink(3);
-    } else if (window.location.pathname === "/settings") {
+    } else if (currentPathname === "/settings") {
       setActiveLink(4);
     }
-  }, [window.location.pathname]);
+  }, [setActiveLink]);
 
   return (
     <div className="navbar">
