@@ -100,9 +100,9 @@ nav span {
 
 #logout {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 45%;
+  left: 45%;
+  justify-content: center;
   padding: 10px 15px;
   font-weight: bold;
   font-size: 20px;
@@ -112,13 +112,17 @@ nav span {
   z-index: 3;
 }
 
+#Dark #logout:hover {
+  background: linear-gradient(to right, #927212, #910d0d);
+}
+
+#Light #logout:hover {
+  background: linear-gradient(to right, #927212, #910d0d);
+}
+
 #Dark #logout {
   color: white;
   background: linear-gradient(to right, #1a391b, #465204);
-}
-
-#Dark #logout:hover {
-  background: linear-gradient(to right, #927212, #910d0d);
 }
 
 #Light #logout {
@@ -126,15 +130,16 @@ nav span {
   background: linear-gradient(to right, #6be96f, #c7e80a);
 }
 
-#Light #logout:hover {
-  background: linear-gradient(to right, #77e35e, #06700d);
-}
-
 #logout:hover {
   transform: scale(1.03);
   border-radius: 20px;
 }
 
+@media only screen and (max-width: 500px) {
+  #logout {
+    left: 35%;
+  }
+}
 @media only screen and (max-height: 500px) {
   #logout {
     top: 60%;

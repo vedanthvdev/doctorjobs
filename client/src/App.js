@@ -7,7 +7,7 @@ import "./components/navigationBar/NavBar.css";
 import "./components/signup/SignUp.css";
 import "./components/Toast/Toast.css";
 
-import "./components/employers/Employer.css";
+import "./components/registerJobs/RegisterJob.css";
 import Profile from "./components/profile/Profile";
 import LoginForm from "./components/login/LoginForm";
 import { Navigate, Routes, Route } from "react-router-dom";
@@ -16,10 +16,10 @@ import { createContext } from "react";
 import ReactSwitch from "react-switch";
 import ForgotPassword from "./components/forgotPassword/ForgotPassword";
 import Jobs from "./components/jobs/Jobs";
-import Employer from "./components/employers/Employer";
-import ViewMyJobs from "./components/employers/ViewMyJobs";
+import ViewMyJobs from "./components/registerJobs/ViewMyJobs";
 import Settings from "./components/settin/Settings";
 import UpdatePassword from "./components/forgotPassword/UpdatePassword";
+import RegisterJob from "./components/registerJobs/RegisterJob";
 
 export const ThemeContext = createContext(null);
 
@@ -62,8 +62,8 @@ function App() {
           <Route exact path="/signup" element={<SignUp />} />
           <Route
             exact
-            path="/employer"
-            element={loggedIn ? <Employer /> : <Navigate to="/login" />}
+            path="/registerjob"
+            element={loggedIn ? <RegisterJob /> : <Navigate to="/login" />}
           />
 
           <Route

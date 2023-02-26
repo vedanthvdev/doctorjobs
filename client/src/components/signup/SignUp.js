@@ -12,6 +12,7 @@ function SignUp() {
   const [regConfirmPassword, setConfirmPassword] = useState("");
   const [regGender, setRegGender] = useState("");
   const [regDob, setRegDob] = useState("");
+  const [spinner, setSpinner] = useState(false);
 
   function yearsAgo(years) {
     const date = new Date();
@@ -39,8 +40,15 @@ function SignUp() {
       });
   };
 
+  function removeError() {
+    setTimeout(() => {
+      setError("");
+    }, 2000);
+  }
+
   function checkUserAlreadyRegistered(e) {
     e.preventDefault();
+    setSpinner(true);
     axios
       .post(ipAddress + "/api/emailalreadyregistered", {
         email: regEmail,
@@ -48,16 +56,19 @@ function SignUp() {
       .then((response) => {
         if (!response.data.message) {
           setError("Email already exists...");
+          removeError();
         } else {
           setError("");
           handleValidation(e);
         }
+        setSpinner(false);
       });
   }
 
   function handleValidation() {
     if (regPassword !== regConfirmPassword || regConfirmPassword === "") {
       setError("Passwords don't match");
+      removeError();
     } else {
       setError("");
       register();
@@ -242,7 +253,13 @@ function SignUp() {
 
         <br />
         <button id="submit" type="submit" value="Submit">
-          Submit
+          {spinner === true ? (
+            <span className="spinner">
+              <i className="fa-solid fa-spinner"></i>
+            </span>
+          ) : (
+            <span>Submit</span>
+          )}
         </button>
         <a href="/login" id="back-to-login">
           Back to login

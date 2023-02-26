@@ -5,6 +5,7 @@ import { ipAddress } from "../../address";
 
 function ViewMyJobs() {
   const [jobs, setJobs] = useState("");
+  const [spinner, setSpinner] = useState(true);
 
   const handleDelete = () => {
     axios
@@ -100,7 +101,7 @@ function ViewMyJobs() {
       })
       .then((response) => {
         setJobs(response.data);
-        console.log(response.data);
+        setSpinner(false);
       })
       .catch((error) => {
         console.log(error);
@@ -110,7 +111,7 @@ function ViewMyJobs() {
   return (
     <div className="profile">
       <link rel="stylesheet" href="profile.css"></link>
-      <link rel="stylesheet" href="Employer.css"></link>
+      <link rel="stylesheet" href="RegisterJob.css"></link>
 
       <link
         rel="stylesheet"
@@ -120,43 +121,51 @@ function ViewMyJobs() {
       {<NavBar />}
 
       <br />
-      <ul id="jobs-list">
-        {jobs.length > 0 ? (
-          jobs.map((job) => (
-            <form className="jobs-available" key={job.id}>
-              <div className="job-card" id={job.id}>
-                <h4>{job.title}</h4>
-                <p>{job.company}</p>
-                <p>{job.location}</p>
-                <p>
-                  {job.job_type} {job.job_salary}
-                </p>
-                {job.apply_link && (
-                  <a href={job.apply_link} className="apply-link">
-                    Apply Now
-                  </a>
-                )}
-                {(job.contact[0].phone || job.contact[0].email) && (
+      {spinner === true ? (
+        <ul id="jobs-list">
+          <span className="spinner">
+            <i className="fa-solid fa-spinner"></i>
+          </span>
+        </ul>
+      ) : (
+        <ul id="jobs-list">
+          {jobs.length > 0 ? (
+            jobs.map((job) => (
+              <form className="jobs-available" key={job.id}>
+                <div className="job-card" id={job.id}>
+                  <h4>{job.title}</h4>
+                  <p>{job.company}</p>
+                  <p>{job.location}</p>
+                  <p>
+                    {job.job_type} {job.job_salary}
+                  </p>
+                  {job.apply_link && (
+                    <a href={job.apply_link} className="apply-link">
+                      Apply Now
+                    </a>
+                  )}
+                  {(job.contact[0].phone || job.contact[0].email) && (
+                    <button
+                      className="contact-button"
+                      onClick={(e) => openContactModal(e, job.contact[0])}
+                    >
+                      Contact
+                    </button>
+                  )}
                   <button
-                    className="contact-button"
-                    onClick={(e) => openContactModal(e, job.contact[0])}
+                    className="deleteJob"
+                    onClick={(e) => openDeleteConfirmationModal(e, job.id)}
                   >
-                    Contact
+                    <i className="fa-solid fa-trash"></i>{" "}
                   </button>
-                )}
-                <button
-                  className="deleteJob"
-                  onClick={(e) => openDeleteConfirmationModal(e, job.id)}
-                >
-                  <i className="fa-solid fa-trash"></i>{" "}
-                </button>
-              </div>
-            </form>
-          ))
-        ) : (
-          <div>No jobs found</div>
-        )}
-      </ul>
+                </div>
+              </form>
+            ))
+          ) : (
+            <form className="empty-Jobs">No jobs found</form>
+          )}
+        </ul>
+      )}
 
       {contact && (
         <div className={`modal-overlay ${isOpen ? "show" : "hide"}`}>

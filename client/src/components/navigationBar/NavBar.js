@@ -10,7 +10,7 @@ function NavBar() {
       setActiveLink(0);
     } else if (window.location.pathname === "/jobs") {
       setActiveLink(1);
-    } else if (window.location.pathname === "/employer") {
+    } else if (window.location.pathname === "/registerjob") {
       setActiveLink(2);
     } else if (window.location.pathname === "/viewmyjobs") {
       setActiveLink(3);
@@ -42,7 +42,7 @@ function NavBar() {
             </a>
           </li>
           <li className={activeLink === 2 ? "active" : ""}>
-            <a href="/employer">
+            <a href="/registerjob">
               <span className="nav-icon">
                 <i className="fa-solid fa-network-wired"></i>{" "}
               </span>

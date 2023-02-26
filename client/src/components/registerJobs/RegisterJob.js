@@ -3,19 +3,21 @@ import axios from "axios";
 import NavBar from "../navigationBar/NavBar";
 import { ipAddress } from "../../address";
 
-function Employer() {
+function RegisterJob() {
   const [jobTitle, setJobTitle] = useState("");
   const [jobCompany, setJobCompany] = useState("");
   const [jobLocation, setJobLocation] = useState("");
   const [jobType, setJobType] = useState("Full-time");
   const [jobLink, setJobLink] = useState("");
-  const [jobSalary, setJobSalary] = useState("");
+  const [jobSalary, setJobSalary] = useState();
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [success, setSuccess] = useState("");
+  const [spinner, setSpinner] = useState(false);
 
   const register = (e) => {
     e.preventDefault();
+    setSpinner(true);
 
     const date = new Date();
     const formattedDate = date.toISOString().slice(0, 19).replace("T", " ");
@@ -45,7 +47,7 @@ function Employer() {
   return (
     <div className="jobAddition">
       <link rel="stylesheet" href="signup.css"></link>
-      <link rel="stylesheet" href="Employer.css"></link>
+      <link rel="stylesheet" href="RegisterJob.css"></link>
 
       <link
         rel="stylesheet"
@@ -181,11 +183,17 @@ function Employer() {
 
         <br />
         <button id="submit" type="submit" value="Submit">
-          Register
+          {spinner === true ? (
+            <span className="spinner">
+              <i className="fa-solid fa-spinner"></i>
+            </span>
+          ) : (
+            <span>Register</span>
+          )}
         </button>
       </form>
     </div>
   );
 }
 
-export default Employer;
+export default RegisterJob;
