@@ -170,7 +170,7 @@ form.all-jobs-available {
 
 @media only screen and (max-width: 500px) {
   .filter-jobs {
-    margin-top: 310px; /* or any other height that you want */
+    margin-top: 315px; /* or any other height that you want */
   }
 
   ul#jobs-list {

@@ -9,6 +9,7 @@ function LoginForm({ setUser }) {
   let navigate = useNavigate();
 
   const [error, setError] = useState();
+  const [spinner, setSpinner] = useState(false);
 
   const [details, setDetails] = useState({ email: "", password: "" });
 
@@ -70,6 +71,7 @@ function LoginForm({ setUser }) {
           console.log("The details don't match");
           setError("The details don't match");
         }
+        setSpinner(false);
       });
   };
 
@@ -88,6 +90,7 @@ function LoginForm({ setUser }) {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    setSpinner(true);
     LoginUser(details);
     setTimeout(() => {
       setError("");
@@ -163,7 +166,13 @@ function LoginForm({ setUser }) {
               value="Log In"
               id="submit"
             >
-              Log In
+              {spinner === true ? (
+                <span className="spinner">
+                  <i className="fa-solid fa-spinner"></i>
+                </span>
+              ) : (
+                <span>Log In</span>
+              )}
             </button>
           </div>
           <div id="forgot-password-container">

@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { ipAddress } from "../../address";
 
 function UpdatePassword() {
   let navigate = useNavigate();

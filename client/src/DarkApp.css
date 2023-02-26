@@ -90,7 +90,7 @@
 }
 
 #Dark #signup-link:hover {
-  background: linear-gradient(to right, #927212, #910d0d);
+  background: linear-gradient(to right, #77e35e, #06700d);
 }
 
 #Dark select {
@@ -120,6 +120,14 @@ select:hover {
 }
 
 #Dark #update-password-container a {
+  color: white;
+}
+
+#Dark .empty-Jobs {
+  color: white;
+}
+
+#Dark .spinner {
   color: white;
 }
 
