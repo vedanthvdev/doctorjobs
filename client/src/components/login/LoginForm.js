@@ -180,6 +180,10 @@ function LoginForm({ setUser }) {
               Forgotten Password
             </a>
           </div>
+          <a href="/home" id="login-link">
+            Home
+          </a>
+          <br />
           <a href="/signup" id="signup-link">
             Sign Up
           </a>

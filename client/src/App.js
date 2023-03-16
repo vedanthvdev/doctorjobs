@@ -6,6 +6,7 @@ import "./components/profile/Profile.css";
 import "./components/navigationBar/NavBar.css";
 import "./components/signup/SignUp.css";
 import "./components/Toast/Toast.css";
+import "./components/home/HomePage.css";
 
 import "./components/registerJobs/RegisterJob.css";
 import Profile from "./components/profile/Profile";
@@ -20,6 +21,7 @@ import ViewMyJobs from "./components/registerJobs/ViewMyJobs";
 import Settings from "./components/settin/Settings";
 import UpdatePassword from "./components/forgotPassword/UpdatePassword";
 import RegisterJob from "./components/registerJobs/RegisterJob";
+import Home from "./components/home/HomePage";
 
 export const ThemeContext = createContext(null);
 
@@ -47,7 +49,7 @@ function App() {
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <div className="App" id={theme}>
         <Routes>
-          <Route path="/" element={<Navigate to="/login" />} />
+          <Route path="/" element={<Navigate to="/home" />} />
 
           <Route
             exact
@@ -71,6 +73,8 @@ function App() {
             path="/viewmyjobs"
             element={loggedIn ? <ViewMyJobs /> : <Navigate to="/login" />}
           />
+
+          <Route exact path="/home" element={<Home />} />
 
           <Route
             exact

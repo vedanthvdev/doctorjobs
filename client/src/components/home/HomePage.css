@@ -1,0 +1,120 @@
+/* Sign up link */
+#login-link {
+  position: absolute;
+  top: 20px;
+  right: 140px;
+  padding: 10px 15px;
+  font-weight: bold;
+  font-size: 20px;
+  text-decoration: none;
+  border-radius: 20px;
+  transition: all 0.2s ease-in-out;
+  z-index: 3;
+}
+
+#Light #login-link {
+  color: #000000e6;
+  background: linear-gradient(to right, #6be96f, #c7e80a);
+}
+
+#Light #login-link:hover {
+  background: linear-gradient(to right, #77e35e, #06700d);
+}
+
+/* Login Hover Transition effect */
+
+#login-link:hover {
+  transform: scale(1.03);
+  border-radius: 20px;
+}
+
+#footer {
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20px;
+}
+
+h5 {
+  text-align: center;
+  font-size: 20px;
+  margin: 0;
+  font-weight: bold;
+}
+
+#Dark h5 {
+  color: white;
+}
+
+#Dark #login-link {
+  color: white;
+  background: linear-gradient(to right, #1a391b, #465204);
+}
+
+#Dark #login-link:hover {
+  background: linear-gradient(to right, #77e35e, #06700d);
+}
+
+.home-page {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  max-width: 90%;
+}
+
+.home-page-title {
+  white-space: nowrap;
+  font-size: 30px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  overflow: hidden;
+  animation: typing 5s steps(100, end) infinite alternate;
+  max-width: 100%;
+}
+
+@keyframes typing {
+  0% {
+    width: 0;
+  }
+  30% {
+    width: 100%;
+  }
+  70% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+  }
+}
+.custom-color {
+  color: rgb(18, 194, 156) !important;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.company-page-title {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 79px;
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 500px) {
+  #login-link {
+    top: 40px;
+  }
+
+  .home-page-title {
+    font-size: 17px;
+  }
+
+  .custom-color {
+    font-size: 22px;
+  }
+
+  .company-page-title {
+    font-size: 45px;
+  }
+}
