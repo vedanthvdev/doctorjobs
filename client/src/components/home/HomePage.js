@@ -118,9 +118,9 @@ function HomePage() {
         <p className="home-page-title">with our comprehensive job listings.</p>
       </div>
       <footer id="footer">
-        <h5>Contact Us</h5>
-        <p>Email: vedanth.vasudev@gmail.com</p>
-        <p>Phone: +447774713897</p>
+        <h5 className="footHead">Contact Us</h5>
+        <p className="foot">Email: vedanth.vasudev@gmail.com</p>
+        <p className="foot">Phone: +447774713897</p>
       </footer>
     </div>
   );

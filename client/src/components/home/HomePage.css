@@ -33,7 +33,14 @@
   bottom: 0px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 20px;
+}
+
+.footHead {
+  font-size: 18px;
+}
+
+.foot {
+  font-size: 15px;
 }
 
 h5 {
@@ -116,5 +123,13 @@ h5 {
 
   .company-page-title {
     font-size: 45px;
+  }
+
+  .footHead {
+    font-size: 13px;
+  }
+
+  .foot {
+    font-size: 10px;
   }
 }
