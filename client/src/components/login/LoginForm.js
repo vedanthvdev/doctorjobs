@@ -76,7 +76,7 @@ function LoginForm({ setUser }) {
   };
 
   function loginSuccess(response) {
-    console.log("Successfully Logged in! Welcom to your future");
+    console.log("Successfully Logged in! Welcome to your future");
     window.localStorage.setItem("isLoggedIn", true);
     window.localStorage.setItem("userId", response.data[0].u_id);
 

@@ -21,9 +21,10 @@ function ForgotPassword() {
         } else {
           setError("");
           setSuccess("An email has been sent to your address");
+          window.localStorage.setItem("userId", response.data[0].u_id);
           setTimeout(() => {
             navigate("/updatepassword");
-          }, 3000);
+          }, 2000);
         }
         setTimeout(() => {
           setError("");
