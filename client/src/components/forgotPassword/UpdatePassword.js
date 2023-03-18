@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { ipAddress } from "../../address";
 
 function UpdatePassword() {
   let navigate = useNavigate();
@@ -7,6 +9,19 @@ function UpdatePassword() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+
+  const updatepassword = () => {
+    axios
+      .post(ipAddress + "/api/updatepassword", {
+        id: window.localStorage.getItem("userId"),
+        password: password,
+      })
+      .then((response) => {
+        if (response.data.message === "Something went wrong") {
+          setError("Something went wrong please try again later");
+        }
+      });
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -16,7 +31,9 @@ function UpdatePassword() {
       setError("Passwords field cannot be empty");
     } else {
       setError("");
+      updatepassword();
       setSuccess("Password successfully changed");
+      window.localStorage.removeItem("userId");
       setTimeout(() => {
         navigate("/login");
       }, 3000);
