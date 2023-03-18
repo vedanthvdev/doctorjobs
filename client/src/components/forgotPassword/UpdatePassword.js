@@ -19,6 +19,12 @@ function UpdatePassword() {
       .then((response) => {
         if (response.data.message === "Something went wrong") {
           setError("Something went wrong please try again later");
+        } else {
+          setSuccess("Password successfully changed");
+          window.localStorage.removeItem("userId");
+          setTimeout(() => {
+            navigate("/login");
+          }, 2000);
         }
       });
   };
@@ -32,11 +38,6 @@ function UpdatePassword() {
     } else {
       setError("");
       updatepassword();
-      setSuccess("Password successfully changed");
-      window.localStorage.removeItem("userId");
-      setTimeout(() => {
-        navigate("/login");
-      }, 3000);
     }
     setTimeout(() => {
       setError("");
