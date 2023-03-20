@@ -1,6 +1,7 @@
-import { useCallback } from "react";
+import { useCallback, useRef, useEffect } from "react";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
+import * as THREE from "three";
 
 function HomePage() {
   const particlesInit = useCallback(async (engine) => {
@@ -12,8 +13,41 @@ function HomePage() {
     await console.log(container);
   }, []);
 
+  const canvasRef = useRef();
+
+  useEffect(() => {
+    const renderer = new THREE.WebGLRenderer({ canvas: canvasRef.current });
+
+    renderer.setClearColor(0x000000, 0); // set the background color to transparent
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(
+      35,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      1000
+    );
+    camera.position.z = 3;
+
+    const geometry = new THREE.BoxGeometry();
+    const material = new THREE.MeshBasicMaterial({ color: 0x77e35e });
+    const cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
+
+    function animate() {
+      requestAnimationFrame(animate);
+      cube.rotation.x += 0.05;
+      cube.rotation.y += 0.05;
+      renderer.render(scene, camera);
+    }
+
+    animate();
+  }, []);
+
   return (
     <div className="login">
+      <canvas className="object3D" ref={canvasRef} />
+
       <Particles
         id="tsparticles"
         init={particlesInit}
