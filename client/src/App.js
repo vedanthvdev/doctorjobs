@@ -8,6 +8,8 @@ import "./components/signup/SignUp.css";
 import "./components/Toast/Toast.css";
 import "./components/home/HomePage.css";
 
+import { useNavigate } from "react-router-dom";
+
 import "./components/registerJobs/RegisterJob.css";
 import Profile from "./components/profile/Profile";
 import LoginForm from "./components/login/LoginForm";
@@ -26,6 +28,8 @@ import Home from "./components/home/HomePage";
 export const ThemeContext = createContext(null);
 
 function App() {
+  let navigate = useNavigate();
+
   const [theme, setTheme] = useState(
     window.localStorage.getItem("theme") || "Light"
   );
@@ -37,59 +41,44 @@ function App() {
     window.localStorage.setItem("theme", theme);
   }, [theme]);
 
+  var loggedIn = window.localStorage.getItem("isLoggedIn");
+
   useEffect(() => {
-    window.localStorage.setItem("theme", theme);
-  }, [theme]);
-
-  const [user, setUser] = useState({ email: "", password: "" });
-
-  const loggedIn = window.localStorage.getItem("isLoggedIn");
+    if (!loggedIn) {
+      const blockedUrls = [
+        "/profile",
+        "/jobs",
+        "/registerjob",
+        "/viewmyjobs",
+        "/settings",
+      ];
+      const currentUrl = window.location.pathname;
+      if (blockedUrls.includes(currentUrl)) {
+        navigate("/login");
+      }
+    }
+  }, [loggedIn, navigate]);
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <div className="App" id={theme}>
         <Routes>
-          <Route path="/" element={<Navigate to="/home" />} />
+          <Route exact path="/login" element={<LoginForm />} />
+          <Route exact path="/profile" element={<Profile />} />
+          <Route exact path="/registerjob" element={<RegisterJob />} />
 
-          <Route
-            exact
-            path="/login"
-            element={<LoginForm setUser={setUser} />}
-          />
-          <Route
-            exact
-            path="/profile"
-            element={loggedIn ? <Profile /> : <Navigate to="/login" />}
-          />
-          <Route exact path="/signup" element={<SignUp />} />
-          <Route
-            exact
-            path="/registerjob"
-            element={loggedIn ? <RegisterJob /> : <Navigate to="/login" />}
-          />
+          <Route exact path="/viewmyjobs" element={<ViewMyJobs />} />
 
-          <Route
-            exact
-            path="/viewmyjobs"
-            element={loggedIn ? <ViewMyJobs /> : <Navigate to="/login" />}
-          />
+          <Route exact path="/jobs" element={<Jobs />} />
 
-          <Route exact path="/home" element={<Home />} />
+          <Route exact path="/settings" element={<Settings />} />
 
-          <Route
-            exact
-            path="/jobs"
-            element={loggedIn ? <Jobs /> : <Navigate to="/login" />}
-          />
-
-          <Route
-            exact
-            path="/settings"
-            element={loggedIn ? <Settings /> : <Navigate to="/login" />}
-          />
-
+          {/* allow without being logged in */}
           <Route exact path="/forgotpassword" element={<ForgotPassword />} />
           <Route exact path="/updatepassword" element={<UpdatePassword />} />
+          <Route exact path="/home" element={<Home />} />
+          <Route exact path="/signup" element={<SignUp />} />
+          <Route path="/" element={<Navigate to="/home" />} />
         </Routes>
         <div className="switch">
           <label id="switch">

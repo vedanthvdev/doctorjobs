@@ -5,7 +5,7 @@ import { LoginSocialFacebook } from "reactjs-social-login";
 import { FacebookLoginButton } from "react-social-login-buttons";
 import { ipAddress } from "../../address";
 
-function LoginForm({ setUser }) {
+function LoginForm() {
   let navigate = useNavigate();
 
   const [error, setError] = useState();
@@ -33,7 +33,9 @@ function LoginForm({ setUser }) {
       })
       .then((response) => {
         if (!response.data.message) {
-          loginSuccess(response);
+          window.localStorage.setItem("isLoggedIn", true);
+          window.localStorage.setItem("userId", response.data[0].u_id);
+          loginSuccess();
         } else {
           // Ask facebook for more information for dob and
           signUpUserFb(fresponse);
@@ -41,6 +43,7 @@ function LoginForm({ setUser }) {
       });
   }
 
+  //sign up using facebook
   function signUpUserFb(response) {
     axios
       .post(ipAddress + "/api/signup", {
@@ -54,7 +57,6 @@ function LoginForm({ setUser }) {
       .then((response) => {
         console.log(response);
         facebookLogin(response);
-        // setShowToast(true);
       });
   }
 
@@ -66,6 +68,8 @@ function LoginForm({ setUser }) {
       })
       .then((response) => {
         if (!response.data.message) {
+          window.localStorage.setItem("isLoggedIn", true);
+          window.localStorage.setItem("userId", response.data[0].u_id);
           loginSuccess(response);
         } else {
           console.log("The details don't match");
@@ -75,15 +79,7 @@ function LoginForm({ setUser }) {
       });
   };
 
-  function loginSuccess(response) {
-    console.log("Successfully Logged in! Welcome to your future");
-    window.localStorage.setItem("isLoggedIn", true);
-    window.localStorage.setItem("userId", response.data[0].u_id);
-
-    setUser({
-      email: details.email,
-      password: details.password,
-    });
+  function loginSuccess() {
     setError("");
     navigate("/profile");
   }
