@@ -116,7 +116,6 @@ form.all-jobs-available {
 .modal-content {
   padding: 20px;
   border-radius: 5px;
-  z-index: 11;
   position: relative;
 }
 
@@ -143,7 +142,6 @@ form.all-jobs-available {
   position: absolute;
   cursor: pointer;
   margin: 2px 2px;
-
   border-radius: 8px;
   top: 10px;
   right: 10px;

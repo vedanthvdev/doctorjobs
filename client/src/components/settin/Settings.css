@@ -1,0 +1,96 @@
+.edit-profile {
+  position: fixed;
+  top: 30%;
+  left: 44%;
+  justify-content: center;
+  padding: 10px 15px;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 18px;
+  transition: all 0.2s ease-in-out;
+  z-index: 3;
+}
+
+.edit-profile:hover {
+  transform: scale(1.02);
+  border-radius: 20px;
+  background-color: #b0e4b9;
+  border-color: #4caf50;
+}
+
+#Dark .edit-profile:hover {
+  background-color: #33cd4d;
+  border-color: #4caf50;
+}
+
+#Dark .edit-profile {
+  color: white;
+  background-color: black;
+  border-color: white;
+}
+
+.profile-content {
+  position: relative;
+}
+#close-edit-profile {
+  position: absolute;
+  border-radius: 5px;
+  top: 15px;
+  right: 15px;
+}
+
+#logout {
+  position: fixed;
+  top: 45%;
+  left: 45%;
+  justify-content: center;
+  padding: 10px 15px;
+  font-weight: bold;
+  font-size: 20px;
+  text-decoration: none;
+  border-radius: 20px;
+  transition: all 0.2s ease-in-out;
+  z-index: 3;
+}
+
+#Dark #logout:hover {
+  background: linear-gradient(to right, #927212, #910d0d);
+}
+
+#Light #logout:hover {
+  background: linear-gradient(to right, #927212, #910d0d);
+}
+
+#Dark #logout {
+  color: white;
+  background: linear-gradient(to right, #1a391b, #465204);
+}
+
+#Light #logout {
+  color: #000000e6;
+  background: linear-gradient(to right, #6be96f, #c7e80a);
+}
+
+#logout:hover {
+  transform: scale(1.03);
+  border-radius: 20px;
+}
+
+@media only screen and (max-width: 500px) {
+  #logout {
+    left: 35%;
+  }
+
+  .edit-profile {
+    left: 33%;
+  }
+}
+@media only screen and (max-height: 500px) {
+  #logout {
+    top: 60%;
+  }
+  .edit-profile {
+    top: 30%;
+  }
+}
