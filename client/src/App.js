@@ -7,6 +7,7 @@ import "./components/navigationBar/NavBar.css";
 import "./components/signup/SignUp.css";
 import "./components/Toast/Toast.css";
 import "./components/home/HomePage.css";
+import "./components/settin/Settings.css";
 
 import { useNavigate } from "react-router-dom";
 
