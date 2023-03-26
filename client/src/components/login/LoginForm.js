@@ -79,11 +79,6 @@ function LoginForm() {
       });
   };
 
-  function loginSuccess() {
-    setError("");
-    navigate("/profile");
-  }
-
   const submitHandler = (e) => {
     e.preventDefault();
     setSpinner(true);
@@ -92,6 +87,11 @@ function LoginForm() {
       setError("");
     }, 500);
   };
+
+  function loginSuccess() {
+    setError("");
+    navigate("/profile");
+  }
 
   useEffect(() => {
     if (error === "Invalid login details" || error === "vibrate-error") {
