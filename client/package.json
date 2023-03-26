@@ -29,6 +29,8 @@
     "react-switch": "^7.0.0",
     "react-tsparticles": "^2.9.3",
     "reactjs-social-login": "^2.6.2",
+    "sonarqube": "^0.0.1",
+    "sonarqube-scanner": "^3.0.1",
     "three": "^0.150.1",
     "tsparticles": "^2.9.3",
     "web-vitals": "^2.1.4"
