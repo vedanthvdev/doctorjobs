@@ -28,26 +28,4 @@ describe("SignUp", () => {
     confirmPasswordInput.value = "password";
     fireEvent.change(confirmPasswordInput);
   });
-
-  // it("should not make an axios post request when passwords do not match 2", () => {
-  //   const wrapper = render(withRouter(<SignUp />));
-  //   wrapper.setState({
-  //     regPassword: "password",
-  //     regConfirmPassword: "notpassword",
-  //   });
-  //   const spy = jest.spyOn(axios, "post");
-  //   wrapper.instance().handleValidation();
-  //   expect(spy).not.toHaveBeenCalled();
-  // });
-
-  // it("should make an axios post request when passwords match", () => {
-  //   const wrapper = render(withRouter(<SignUp />));
-  //   wrapper.setState({
-  //     regPassword: "password",
-  //     regConfirmPassword: "password",
-  //   });
-  //   const spy = jest.spyOn(axios, "post");
-  //   wrapper.instance().handleValidation();
-  //   expect(spy).toHaveBeenCalled();
-  // });
 });

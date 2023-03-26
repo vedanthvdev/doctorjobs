@@ -1,5 +1,4 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, React } from "react";
 
 function NavBar() {
   const [activeLink, setActiveLink] = useState(null);
