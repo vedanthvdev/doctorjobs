@@ -59,7 +59,7 @@ function SignUp() {
           removeError();
         } else {
           setError("");
-          handleValidation(e);
+          handleValidation();
         }
         setSpinner(false);
       });

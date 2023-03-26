@@ -159,7 +159,6 @@ input[type="url"]:hover,
 select:hover {
   transform: scale(1.02);
   border-radius: 20px;
-  border-radius: 20px;
 }
 
 #gender_male:hover,
@@ -167,7 +166,6 @@ select:hover {
 #gender_other:hover {
   cursor: pointer;
   transform: scale(1.02);
-  border-radius: 20px;
   border-radius: 20px;
   background-color: #b0e4b9;
   border-color: #4caf50;
@@ -330,10 +328,6 @@ button[type="submit"]:hover {
   justify-content: left;
   align-items: center;
   z-index: 0;
-}
-
-.switch ReactSwitch {
-  padding: 10px;
 }
 
 #Light .switch label {
