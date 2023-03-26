@@ -1,4 +1,10 @@
-import { useState, useEffect } from "react";
+import {
+  useState,
+  useEffect,
+  createContext,
+  useMemo,
+  useCallback,
+} from "react";
 import "./App.css";
 import "./DarkApp.css";
 
@@ -9,14 +15,11 @@ import "./components/Toast/Toast.css";
 import "./components/home/HomePage.css";
 import "./components/settin/Settings.css";
 
-import { useNavigate } from "react-router-dom";
-
 import "./components/registerJobs/RegisterJob.css";
 import Profile from "./components/profile/Profile";
 import LoginForm from "./components/login/LoginForm";
-import { Navigate, Routes, Route } from "react-router-dom";
+import { Navigate, Routes, Route, useNavigate } from "react-router-dom";
 import SignUp from "./components/signup/SignUp";
-import { createContext } from "react";
 import ReactSwitch from "react-switch";
 import ForgotPassword from "./components/forgotPassword/ForgotPassword";
 import Jobs from "./components/jobs/Jobs";
@@ -34,15 +37,16 @@ function App() {
   const [theme, setTheme] = useState(
     window.localStorage.getItem("theme") || "Light"
   );
-  const toggleTheme = () => {
+
+  const toggleTheme = useCallback(() => {
     setTheme((current) => (current === "Light" ? "Dark" : "Light"));
-  };
+  }, []);
 
   useEffect(() => {
     window.localStorage.setItem("theme", theme);
   }, [theme]);
 
-  var loggedIn = window.localStorage.getItem("isLoggedIn");
+  const loggedIn = window.localStorage.getItem("isLoggedIn");
 
   useEffect(() => {
     if (!loggedIn) {
@@ -60,8 +64,13 @@ function App() {
     }
   }, [loggedIn, navigate]);
 
+  const contextValue = useMemo(
+    () => ({ theme, toggleTheme }),
+    [theme, toggleTheme]
+  );
+
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={contextValue}>
       <div className="App" id={theme}>
         <Routes>
           <Route exact path="/login" element={<LoginForm />} />

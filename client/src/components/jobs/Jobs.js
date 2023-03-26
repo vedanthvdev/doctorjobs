@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import NavBar from "../navigationBar/NavBar";
 import { ipAddress } from "../../address";
+import ContactModal from "../contact/ContactModal";
 
 function Jobs() {
   const [jobs, setJobs] = useState([]);
@@ -26,24 +27,6 @@ function Jobs() {
     setContact(null);
   };
 
-  const ContactModal = ({ contact, closeModal }) => {
-    if (!contact) {
-      return null;
-    }
-    return (
-      <div className="modal-overlay">
-        <div className="modal-content">
-          <h4>Contact Details</h4>
-          {contact.email && <p>Email: {contact.email}</p>}
-          {contact.phone && <p>Phone: {contact.phone}</p>}
-          <button id="close-modal" onClick={closeModal}>
-            Close
-          </button>
-        </div>
-      </div>
-    );
-  };
-
   useEffect(() => {
     axios
       .get(ipAddress + "/api/getjobs", {
@@ -61,10 +44,10 @@ function Jobs() {
 
   // function to filter jobs
   function filterJobs(e) {
-    // filter the jobs
     e.preventDefault();
-    const filteredJobs = jobs.filter((job) => {
-      if (
+
+    const filteredJobs = jobs.filter(
+      (job) =>
         (job.title.toLowerCase().includes(filterTitle) ||
           filterTitle.length === 0) &&
         (job.location.toLowerCase().includes(filterLocation) ||
@@ -72,12 +55,8 @@ function Jobs() {
         (job.job_type === filterJobType ||
           filterJobType.length === 0 ||
           filterJobType === "All")
-      ) {
-        return true;
-      }
-      return false;
-    });
-    // update the filtered jobs in state
+    );
+
     setFilteredJobs(filteredJobs);
   }
 

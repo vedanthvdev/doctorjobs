@@ -2,7 +2,6 @@ import React from "react";
 import SignUp from "../../signup/SignUp";
 import { render, screen, cleanup, fireEvent } from "@testing-library/react";
 import { withRouter } from "../../../setupTests";
-import axios from "axios";
 jest.mock("axios");
 
 afterEach(() => {

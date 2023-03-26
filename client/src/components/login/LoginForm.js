@@ -154,7 +154,6 @@ function LoginForm() {
                 data-testid="password"
               />
             </label>
-            {/* {error !== "" ? <div className="errorValue">{error}</div> : ""} */}
             <br />
             <button
               data-testid="submit"

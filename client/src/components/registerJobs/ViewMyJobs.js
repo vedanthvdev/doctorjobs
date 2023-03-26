@@ -2,23 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import NavBar from "../navigationBar/NavBar";
 import { ipAddress } from "../../address";
+import ContactModal from "../contact/ContactModal";
+import DeleteConfirmationModal from "../contact/DeleteConfirmationModal";
 
 function ViewMyJobs() {
   const [jobs, setJobs] = useState("");
   const [spinner, setSpinner] = useState(true);
-
-  const handleDelete = () => {
-    axios
-      .post(ipAddress + "/api/deletejob", {
-        userId: deleteJobId,
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-    closeDeleteConfirmationModal();
-    window.location.reload();
-  };
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -51,47 +40,17 @@ function ViewMyJobs() {
     setContact(null);
   };
 
-  const DeleteConfirmationModal = ({
-    deleteJobId,
-    closeDeleteConfirmationModal,
-  }) => {
-    if (!deleteJobId) {
-      return null;
-    }
-    return (
-      <div className="modal-overlay">
-        <div className="modal-content">
-          <h4>Confirm Deleting the job</h4>
-          <button
-            id="close-delete-modal"
-            onClick={closeDeleteConfirmationModal}
-          >
-            Close
-          </button>
-          <button id="confirm-delete-modal" onClick={handleDelete}>
-            Confirm
-          </button>
-        </div>
-      </div>
-    );
-  };
+  const handleDelete = () => {
+    axios
+      .post(ipAddress + "/api/deletejob", {
+        userId: deleteJobId,
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
-  const ContactModal = ({ contact, closeModal }) => {
-    if (!contact) {
-      return null;
-    }
-    return (
-      <div className="modal-overlay">
-        <div className="modal-content">
-          <h4>Contact Details</h4>
-          {contact.email && <p>Email: {contact.email}</p>}
-          {contact.phone && <p>Phone: {contact.phone}</p>}
-          <button id="close-modal" onClick={closeModal}>
-            Close
-          </button>
-        </div>
-      </div>
-    );
+    closeDeleteConfirmationModal();
+    window.location.reload();
   };
 
   useEffect(() => {
@@ -189,6 +148,7 @@ function ViewMyJobs() {
             <DeleteConfirmationModal
               deleteJobId={deleteJobId}
               closeDeleteConfirmationModal={closeDeleteConfirmationModal}
+              handleDelete={handleDelete}
             />
           </div>
         </div>
