@@ -21,7 +21,7 @@ function LoginForm() {
   };
 
   function facebookLogin(response) {
-    checkUserAlreadyRegistered(response); // setProfile(response);
+    checkUserAlreadyRegistered(response);
   }
 
   function checkUserAlreadyRegistered(fresponse) {
