@@ -1,29 +1,44 @@
 const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
-const https = require("https");
-const fs = require("fs");
+const bcrypt = require("bcrypt");
 const PORT = 3000;
 
 const app = express();
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+  next();
+});
 
 app.use(express.json());
 app.use(cors());
 
 const db = mysql.createConnection({
   user: "root",
-  host: "loginsystem.c8yzldilma0u.ap-southeast-1.rds.amazonaws.com",
+  host: "hospital-3.c8yzldilma0u.ap-southeast-1.rds.amazonaws.com",
   // host: "localhost",
   password: "password",
   database: "LoginSystem",
 });
 
+// Encrypting the password
+async function hashPassword(password) {
+  const salt = await bcrypt.genSalt(10);
+  return await bcrypt.hash(password, salt);
+}
+
 // Register user into the database
-app.post("/api/signup", (req, res) => {
+app.post("/api/signup", async (req, res) => {
   const firstname = req.body.firstname;
   const lastname = req.body.lastname;
   const email = req.body.email;
-  const password = req.body.password;
+  const password = await hashPassword(req.body.password);
   const gender = req.body.gender;
   const dob = req.body.dob;
 
@@ -73,17 +88,21 @@ app.post("/api/authenticate", (req, res) => {
   const password = req.body.password;
 
   db.query(
-    "SELECT * FROM users WHERE u_email = ? AND u_password = ?",
-    [email, password],
-    (err, result) => {
+    "SELECT * FROM users WHERE u_email = ?",
+    [email],
+    async (err, result) => {
       if (err) {
         res.send({ err: err });
       }
 
       if (result.length > 0) {
-        res.send(result);
+        if (await bcrypt.compare(password, result[0].u_password)) {
+          res.send(result);
+        } else {
+          res.send({ message: "Wrong email/password" });
+        }
       } else {
-        res.send({ message: "Wrong username/password" });
+        res.send({ message: "Email doesn't exist.." });
       }
     }
   );
@@ -138,6 +157,51 @@ app.post("/api/forgotpassword", (req, res) => {
       res.send({ message: "Email not found" });
     }
   });
+});
+
+// update password
+app.post("/api/updatepassword", async (req, res) => {
+  const password = await hashPassword(req.body.password);
+  const id = req.body.id;
+
+  db.query(
+    "UPDATE `LoginSystem`.`users` SET `u_password` = ? WHERE (`u_id` = ?);",
+    [password, id],
+    (err, result) => {
+      if (err) {
+        res.send({ err: err });
+      }
+
+      if (id === null) {
+        res.send({ message: "Something went wrong" });
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
+// update profile
+app.post("/api/updateprofile", async (req, res) => {
+  const id = req.body.id;
+  const title = req.body.title;
+  const qualification = req.body.qualification;
+
+  db.query(
+    "UPDATE `LoginSystem`.`users` SET `u_title` = ?, `u_qualification`= ? WHERE (`u_id` = ?);",
+    [title, qualification, id],
+    (err, result) => {
+      if (err) {
+        res.send({ err: err });
+      }
+
+      if (id === null) {
+        res.send({ message: "Something went wrong" });
+      } else {
+        res.send(result);
+      }
+    }
+  );
 });
 
 //Get all user Uploaded jobs
@@ -214,15 +278,6 @@ app.get("/api/getrecentjobs", (req, res) => {
     }
   );
 });
-
-// Configure HTTPS with SSL/TLS certificates
-// const httpsOptions = {
-//   cert: fs.readFileSync("../server/cert.pem"),
-//   key: fs.readFileSync("../server/key.pem"),
-// };
-// https.createServer(httpsOptions, app).listen(PORT, () => {
-//   console.log("running server on port - " + PORT);
-// });
 
 app.listen(PORT, () => {
   console.log("running server on port - " + PORT);
