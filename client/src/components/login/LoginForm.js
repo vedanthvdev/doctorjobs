@@ -70,7 +70,7 @@ function LoginForm() {
         if (!response.data.message) {
           window.localStorage.setItem("isLoggedIn", true);
           window.localStorage.setItem("userId", response.data[0].u_id);
-          loginSuccess(response);
+          loginSuccess();
         } else {
           console.log("The details don't match");
           setError("The details don't match");
