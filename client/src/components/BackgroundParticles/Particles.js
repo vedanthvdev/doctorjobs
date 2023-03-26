@@ -122,7 +122,7 @@ function BackgroundParticles() {
       />
       <Particles
         id="tsparticles"
-        url="http://foo.bar/particles.json"
+        url="https://foo.bar/particles.json"
         init={particlesInit}
         loaded={particlesLoaded}
       />
