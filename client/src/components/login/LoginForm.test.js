@@ -39,34 +39,6 @@ describe("LoginForm", () => {
   });
 });
 
-// describe("LoginFormttest", () => {
-//   it("submits the form and navigates to the profile page on success", async () => {
-//     const mockSetUser = jest.fn();
-//     axios.post.mockResolvedValue({ data: { message: "" } });
-
-//     const { getByTestId } = render(
-//       withRouter(<LoginForm setUser={mockSetUser} />)
-//     );
-
-//     const emailInput = getByTestId("email");
-//     const passwordInput = getByTestId("password");
-//     const submitButton = getByTestId("submit");
-
-//     fireEvent.change(emailInput, { target: { value: "a.b@gmail.com" } });
-//     fireEvent.change(passwordInput, { target: { value: "asnn" } });
-//     fireEvent.click(submitButton);
-
-//     await waitFor(() => {
-//       // window.localStorage.setItem("userId", response.data[0].u_id);
-
-//       expect(mockSetUser).toHaveBeenCalledWith({
-//         email: "a.b@gmail.com",
-//         password: "asnn",
-//       });
-//     });
-//   });
-// });
-
 test("Test email and password input and submit button", () => {
   const { inputEmail, inputPassword, submitBtn } = setup();
   expect(inputEmail).toBeInTheDocument();

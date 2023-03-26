@@ -21,12 +21,10 @@ function LoginForm() {
   };
 
   function facebookLogin(response) {
-    // setProfile(response);
-    checkUserAlreadyRegistered(response);
+    checkUserAlreadyRegistered(response); // setProfile(response);
   }
 
   function checkUserAlreadyRegistered(fresponse) {
-    // e.preventDefault();
     axios
       .post(ipAddress + "/api/emailalreadyregistered", {
         email: fresponse.email,
