@@ -1,6 +1,6 @@
 import React from "react";
 import SignUp from "./SignUp";
-import { render, screen, cleanup, fireEvent } from "@testing-library/react";
+import { render, cleanup } from "@testing-library/react";
 import { withRouter } from "../../setupTests";
 jest.mock("axios");
 
