@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import NavBar from "../navigationBar/NavBar";
 import { ipAddress } from "../../address";
-import ContactModal from "../contact/ContactModal";
 import JobModal from "./jobModal";
 
 function Jobs() {
@@ -12,21 +11,8 @@ function Jobs() {
   const [filterJobType, setFilterJobType] = useState([]);
 
   const [filteredJobs, setFilteredJobs] = useState([]);
-  const [isOpen, setIsOpen] = useState(false);
 
-  const [contact, setContact] = useState(null);
   const [spinner, setSpinner] = useState(true);
-
-  const openContactModal = (event, jobContact) => {
-    event.preventDefault();
-    setContact(jobContact);
-    setIsOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsOpen(false);
-    setContact(null);
-  };
 
   useEffect(() => {
     axios
@@ -133,17 +119,7 @@ function Jobs() {
           </span>
         </ul>
       ) : (
-        <JobModal
-          filteredJobs={filteredJobs}
-          openContactModal={openContactModal}
-        />
-      )}
-      {contact && (
-        <div className={`modal-overlay ${isOpen ? "show" : "hide"}`}>
-          <div className={`modal-content ${isOpen ? "show" : "hide"}`}>
-            <ContactModal contact={contact} closeModal={closeModal} />
-          </div>
-        </div>
+        <JobModal filteredJobs={filteredJobs} />
       )}
     </div>
   );
