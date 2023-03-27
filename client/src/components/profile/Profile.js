@@ -3,6 +3,7 @@ import axios from "axios";
 import NavBar from "../navigationBar/NavBar";
 import { ipAddress } from "../../address";
 import ContactModal from "../contact/ContactModal";
+import JobModal from "../jobs/jobModal";
 
 function Profile() {
   const [jobs, setJobs] = useState([]);
@@ -54,37 +55,7 @@ function Profile() {
           </span>
         </ul>
       ) : (
-        <ul id="jobs-list">
-          {jobs.length > 0 ? (
-            jobs.map((job) => (
-              <form className="jobs-available" key={job.id}>
-                <div className="job-card" id={job.id}>
-                  <h4>{job.title}</h4>
-                  <p>{job.company}</p>
-                  <p>{job.location}</p>
-                  <p>
-                    {job.job_type} {job.job_salary}
-                  </p>
-                  {job.apply_link && (
-                    <a href={job.apply_link} className="apply-link">
-                      Apply Now
-                    </a>
-                  )}
-                  {(job.contact[0].phone || job.contact[0].email) && (
-                    <button
-                      className="contact-button"
-                      onClick={(e) => openContactModal(e, job.contact[0])}
-                    >
-                      Contact
-                    </button>
-                  )}
-                </div>
-              </form>
-            ))
-          ) : (
-            <form className="empty-Jobs">No jobs found</form>
-          )}
-        </ul>
+        <JobModal filteredJobs={jobs} openContactModal={openContactModal} />
       )}
       {contact && (
         <div className={`modal-overlay ${isOpen ? "show" : "hide"}`}>
