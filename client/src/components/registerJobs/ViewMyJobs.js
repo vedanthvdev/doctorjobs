@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import NavBar from "../navigationBar/NavBar";
 import { ipAddress } from "../../address";
-import ContactModal from "../contact/ContactModal";
 import DeleteConfirmationModal from "../contact/DeleteConfirmationModal";
 import JobModal from "../jobs/jobModal";
 
@@ -10,12 +9,8 @@ function ViewMyJobs() {
   const [jobs, setJobs] = useState("");
   const [spinner, setSpinner] = useState(true);
 
-  const [isOpen, setIsOpen] = useState(false);
-
   const [isDeleteConfirmationOpen, setIsDeleteConfirmationOpen] =
     useState(false);
-
-  const [contact, setContact] = useState(null);
 
   const [deleteJobId, setDeleteJobId] = useState(null);
 
@@ -25,20 +20,9 @@ function ViewMyJobs() {
     setIsDeleteConfirmationOpen(true);
   };
 
-  const openContactModal = (event, jobContact) => {
-    event.preventDefault();
-    setContact(jobContact);
-    setIsOpen(true);
-  };
-
   const closeDeleteConfirmationModal = () => {
     setIsDeleteConfirmationOpen(false);
     setDeleteJobId(null);
-  };
-
-  const closeModal = () => {
-    setIsOpen(false);
-    setContact(null);
   };
 
   const handleDelete = () => {
@@ -90,17 +74,8 @@ function ViewMyJobs() {
       ) : (
         <JobModal
           filteredJobs={jobs}
-          openContactModal={openContactModal}
           openDeleteConfirmationModal={openDeleteConfirmationModal}
         />
-      )}
-
-      {contact && (
-        <div className={`modal-overlay ${isOpen ? "show" : "hide"}`}>
-          <div className={`modal-content ${isOpen ? "show" : "hide"}`}>
-            <ContactModal contact={contact} closeModal={closeModal} />
-          </div>
-        </div>
       )}
 
       {deleteJobId && (
