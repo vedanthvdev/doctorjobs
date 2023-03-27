@@ -48,7 +48,7 @@ function LoginForm() {
         firstname: response.first_name,
         lastname: response.last_name,
         email: response.email,
-        password: "facebookpas",
+        // password: "facebookpas",
         // gender: regGender,
         // dob: regDob,
       })
