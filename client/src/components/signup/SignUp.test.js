@@ -17,15 +17,4 @@ describe("SignUp", () => {
     const wrapper = routerSetup();
     expect(wrapper.findByTestId("signup-form")).toBeTruthy();
   });
-
-  it("should set error state to empty string when passwords match", async () => {
-    routerSetup();
-    const passwordInput = await screen.getByTestId("password");
-    passwordInput.value = "password";
-    fireEvent.change(passwordInput);
-
-    const confirmPasswordInput = await screen.getByTestId("confirm-password");
-    confirmPasswordInput.value = "password";
-    fireEvent.change(confirmPasswordInput);
-  });
 });
