@@ -7,7 +7,10 @@ const PORT = 3000;
 const app = express();
 
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://ihospitaljobs.com, https://localhost:3001"
+  );
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
@@ -20,10 +23,10 @@ app.use(express.json());
 app.use(cors());
 
 const db = mysql.createConnection({
-  user: "root",
+  user: process.env.DB_USERNAME,
   host: "hospital-3.c8yzldilma0u.ap-southeast-1.rds.amazonaws.com",
   // host: "localhost",
-  password: "password",
+  password: process.env.DB_PASSWORD,
   database: "LoginSystem",
 });
 
