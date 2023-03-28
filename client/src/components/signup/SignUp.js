@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ipAddress } from "../../address";
+import PasswordEye from "../login/passwordEye";
 
 function SignUp() {
   let navigate = useNavigate();
@@ -13,6 +14,7 @@ function SignUp() {
   const [regGender, setRegGender] = useState("");
   const [regDob, setRegDob] = useState("");
   const [spinner, setSpinner] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   function yearsAgo(years) {
     const date = new Date();
@@ -219,7 +221,7 @@ function SignUp() {
             <i className="fa fa-lock"></i>
           </span>
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             id="password"
             name="password"
             data-testid="password"
@@ -229,6 +231,10 @@ function SignUp() {
             }}
             placeholder="Password*"
           />
+          <PasswordEye
+            showPassword={showPassword}
+            setShowPassword={setShowPassword}
+          />
         </label>
         <br />
 
@@ -237,7 +243,7 @@ function SignUp() {
             <i className="fa fa-lock"></i>
           </span>
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             id="confirm-password"
             name="confirm-password"
             data-testid="confirm-password"
