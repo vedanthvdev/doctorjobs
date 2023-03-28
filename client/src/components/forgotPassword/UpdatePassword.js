@@ -92,7 +92,7 @@ function UpdatePassword() {
             <i className="fa fa-lock" aria-hidden="true"></i>
           </span>
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             placeholder="Confirm New Password"
             value={confirmPassword}
             onChange={(event) => setConfirmPassword(event.target.value)}
