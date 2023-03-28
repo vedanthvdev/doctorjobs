@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ipAddress } from "../../address";
+import zxcvbn from "zxcvbn";
 import PasswordEye from "../login/passwordEye";
 
 function SignUp() {
@@ -15,6 +16,7 @@ function SignUp() {
   const [regDob, setRegDob] = useState("");
   const [spinner, setSpinner] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [passwordStrength, setPasswordStrength] = useState();
 
   function yearsAgo(years) {
     const date = new Date();
@@ -228,6 +230,9 @@ function SignUp() {
             required
             onChange={(e) => {
               setPassword(e.target.value);
+              const timeToHack = zxcvbn(e.target.value).crack_times_display
+                .online_no_throttling_10_per_second;
+              setPasswordStrength(timeToHack);
             }}
             placeholder="Password*"
           />
@@ -236,6 +241,12 @@ function SignUp() {
             setShowPassword={setShowPassword}
           />
         </label>
+        {regPassword && (
+          <p className="timeToHack">
+            💡 Time to hack: <span className="time">{passwordStrength}</span>
+          </p>
+        )}
+
         <br />
 
         <label className="label-text-signup" id="conPassword">

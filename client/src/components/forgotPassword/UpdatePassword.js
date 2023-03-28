@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ipAddress } from "../../address";
+import zxcvbn from "zxcvbn";
+import PasswordEye from "../login/passwordEye";
 
 function UpdatePassword() {
   let navigate = useNavigate();
@@ -9,6 +11,8 @@ function UpdatePassword() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [passwordStrength, setPasswordStrength] = useState();
 
   const updatepassword = () => {
     axios
@@ -61,20 +65,34 @@ function UpdatePassword() {
             <i className="fa fa-lock" aria-hidden="true"></i>
           </span>
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             placeholder="New Password"
             value={password}
-            onChange={(event) => setPassword(event.target.value)}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              const timeToHack = zxcvbn(e.target.value).crack_times_display
+                .online_no_throttling_10_per_second;
+              setPasswordStrength(timeToHack);
+            }}
             required
           />
+          <PasswordEye
+            showPassword={showPassword}
+            setShowPassword={setShowPassword}
+          />
         </label>
+        {password && (
+          <p className="timeToHack">
+            💡 Time to hack: <span className="time">{passwordStrength}</span>
+          </p>
+        )}
 
         <label>
           <span className="icon">
             <i className="fa fa-lock" aria-hidden="true"></i>
           </span>
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             placeholder="Confirm New Password"
             value={confirmPassword}
             onChange={(event) => setConfirmPassword(event.target.value)}

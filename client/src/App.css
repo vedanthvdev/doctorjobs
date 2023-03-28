@@ -215,6 +215,31 @@ span.icon i {
   color: #848884;
 }
 
+.timeToHack {
+  font-size: 15px;
+  margin: 0px;
+  animation: fadeDown 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+.time {
+  font-weight: bold;
+}
+
+#Light .timeToHack {
+  color: #848884;
+}
+
 #Light span.icon i {
   color: #848884;
 }
