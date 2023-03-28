@@ -196,6 +196,25 @@ span.icon i {
   z-index: 2;
 }
 
+.eye {
+  font-size: 18px;
+  cursor: pointer;
+  position: absolute;
+  transform: translate(-120%, 60%);
+  border: 0px;
+  z-index: 2;
+}
+
+#Dark .eye {
+  background-color: #1d2226;
+  color: white;
+}
+
+#Light .eye {
+  background-color: white;
+  color: #848884;
+}
+
 #Light span.icon i {
   color: #848884;
 }

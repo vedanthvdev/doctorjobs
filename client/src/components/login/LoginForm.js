@@ -4,6 +4,7 @@ import axios from "axios";
 import { LoginSocialFacebook } from "reactjs-social-login";
 import { FacebookLoginButton } from "react-social-login-buttons";
 import { ipAddress } from "../../address";
+import PasswordEye from "./passwordEye";
 
 function LoginForm() {
   let navigate = useNavigate();
@@ -12,6 +13,8 @@ function LoginForm() {
   const [spinner, setSpinner] = useState(false);
 
   const [details, setDetails] = useState({ email: "", password: "" });
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (event) => {
     setDetails({
@@ -142,7 +145,7 @@ function LoginForm() {
                 <i className="fa fa-lock"></i>
               </span>
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 id="password"
                 name="password"
                 required
@@ -150,6 +153,10 @@ function LoginForm() {
                 onChange={handleChange}
                 placeholder="Password*"
                 data-testid="password"
+              />
+              <PasswordEye
+                showPassword={showPassword}
+                setShowPassword={setShowPassword}
               />
             </label>
             <br />
