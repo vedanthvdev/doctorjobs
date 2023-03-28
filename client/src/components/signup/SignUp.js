@@ -254,7 +254,9 @@ function SignUp() {
             }}
           />
         </label>
+
         <br />
+
         {error && <div className="errorValue">{error}</div>}
 
         <br />
