@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ContactModal from "../contact/ContactModal";
 
 function JobModal({ filteredJobs, openDeleteConfirmationModal }) {
-  const [contact, setContact] = useState(null);
+  const [contact, setContact] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
   const openContactModal = (event, jobContact) => {
@@ -16,30 +16,39 @@ function JobModal({ filteredJobs, openDeleteConfirmationModal }) {
     setContact(null);
   };
 
+  const validateCont = (conct) => {
+    const finl = JSON.parse(conct);
+    return finl[0];
+  };
+
   return (
     <div>
       {
         <ul id="all-jobs-list">
           {filteredJobs.length > 0 ? (
             filteredJobs.map((job) => (
-              <form className="all-jobs-available" key={job.id}>
-                <div className="job-card" id={job.id}>
-                  <h4>{job.title}</h4>
-                  <p>{job.company}</p>
-                  <p>{job.location}</p>
+              <form className="all-jobs-available" key={job.j_id}>
+                <div className="job-card" id={job.j_id}>
+                  <h4>{job.j_title}</h4>
+                  <p>{job.j_company}</p>
+                  <p>{job.j_location}</p>
                   <p>
-                    {job.job_type} {job.job_salary}
+                    {job.j_type} {job.j_salary}
                   </p>
                   <div className="contact-section">
-                    {job.apply_link && (
-                      <a href={job.apply_link} className="apply-link">
+                    {job.j_link && (
+                      <a href={job.j_link} className="apply-link">
                         Apply Now
                       </a>
                     )}
-                    {(job.contact[0].phone || job.contact[0].email) && (
+
+                    {(validateCont(job.j_contact).phone ||
+                      validateCont(job.j_contact).email) && (
                       <button
                         className="contact-button"
-                        onClick={(e) => openContactModal(e, job.contact[0])}
+                        onClick={(e) =>
+                          openContactModal(e, validateCont(job.j_contact))
+                        }
                       >
                         Contact
                       </button>
@@ -47,7 +56,9 @@ function JobModal({ filteredJobs, openDeleteConfirmationModal }) {
                     {openDeleteConfirmationModal && (
                       <button
                         className="deleteJob"
-                        onClick={(e) => openDeleteConfirmationModal(e, job.id)}
+                        onClick={(e) =>
+                          openDeleteConfirmationModal(e, job.j_id)
+                        }
                       >
                         <i className="fa-solid fa-trash"></i>{" "}
                       </button>

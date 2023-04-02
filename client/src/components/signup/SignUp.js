@@ -58,7 +58,7 @@ function SignUp() {
         email: regEmail,
       })
       .then((response) => {
-        if (!response.data.message) {
+        if (response.data.message) {
           setError("Email already exists...");
           removeError();
         } else {
