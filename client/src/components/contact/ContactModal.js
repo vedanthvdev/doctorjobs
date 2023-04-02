@@ -1,7 +1,4 @@
 function ContactModal({ contact, closeModal }) {
-  if (!contact) {
-    return null;
-  }
   return (
     <div className="modal-overlay">
       <div className="modal-content">

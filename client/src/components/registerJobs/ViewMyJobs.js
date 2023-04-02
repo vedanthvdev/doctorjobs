@@ -28,7 +28,7 @@ function ViewMyJobs() {
   const handleDelete = () => {
     axios
       .post(ipAddress + "/api/deletejob", {
-        userId: deleteJobId,
+        jobId: deleteJobId,
       })
       .catch((error) => {
         console.log(error);
@@ -45,11 +45,11 @@ function ViewMyJobs() {
       })
       .then((response) => {
         setJobs(response.data);
-        setSpinner(false);
       })
       .catch((error) => {
-        console.log(error);
+        console.log("You have not uploaded any jobs");
       });
+    setSpinner(false);
   }, []);
 
   return (
@@ -90,7 +90,6 @@ function ViewMyJobs() {
             }`}
           >
             <DeleteConfirmationModal
-              deleteJobId={deleteJobId}
               closeDeleteConfirmationModal={closeDeleteConfirmationModal}
               handleDelete={handleDelete}
             />
