@@ -1,12 +1,7 @@
 function DeleteConfirmationModal({
-  deleteJobId,
   closeDeleteConfirmationModal,
   handleDelete,
 }) {
-  if (!deleteJobId) {
-    return null;
-  }
-
   return (
     <div className="modal-overlay">
       <div className="modal-content">

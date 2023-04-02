@@ -48,9 +48,9 @@ function Settings() {
         id: window.localStorage.getItem("userId"),
       })
       .then((response) => {
-        setUser(response.data[0]);
-        setTitle(response.data[0].u_title);
-        setqualification(response.data[0].u_qualification);
+        setUser(response.data);
+        setTitle(response.data.u_title);
+        setqualification(response.data.u_qualification);
       })
       .catch((error) => {
         console.log(error);

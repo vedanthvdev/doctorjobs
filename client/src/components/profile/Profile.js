@@ -15,11 +15,11 @@ function Profile() {
       })
       .then((response) => {
         setJobs(response.data);
-        setSpinner(false);
       })
       .catch((error) => {
-        console.log(error);
+        console.log("No jobs found");
       });
+    setSpinner(false);
   }, []);
 
   return (
