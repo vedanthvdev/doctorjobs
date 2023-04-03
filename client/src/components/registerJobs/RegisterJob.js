@@ -36,6 +36,7 @@ function RegisterJob() {
       })
       .then((response) => {
         console.log(response);
+        setSpinner(false);
       });
     setSuccess("Job Uploaded Successfully");
     setTimeout(() => {
