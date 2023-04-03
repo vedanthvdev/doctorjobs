@@ -8,9 +8,11 @@ function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [spinner, setSpinner] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setSpinner(true);
     axios
       .post(ipAddress + "/api/forgotpassword", {
         email: email,
@@ -20,7 +22,7 @@ function ForgotPassword() {
           setError("No account with this email exists");
         } else {
           setError("");
-          setSuccess("An email has been sent to your address");
+          setSuccess("A reset password email has been sent");
           window.localStorage.setItem("userId", response.data[0].u_id);
           setTimeout(() => {
             setError("");
@@ -30,6 +32,7 @@ function ForgotPassword() {
             navigate("/updatepassword");
           }, 1000);
         }
+        setSpinner(false);
       });
   };
 
@@ -64,7 +67,13 @@ function ForgotPassword() {
         value="Submit"
         id="forgot-submit"
       >
-        Submit
+        {spinner === true ? (
+          <span className="spinner">
+            <i className="fa-solid fa-spinner"></i>
+          </span>
+        ) : (
+          <span>Submit</span>
+        )}
       </button>
       <br />
       <a href="/login" id="back-to-login">

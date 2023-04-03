@@ -13,8 +13,10 @@ function UpdatePassword() {
   const [success, setSuccess] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [passwordStrength, setPasswordStrength] = useState();
+  const [spinner, setSpinner] = useState(false);
 
   const updatepassword = () => {
+    setSpinner(true);
     axios
       .post(ipAddress + "/api/updatepassword", {
         id: window.localStorage.getItem("userId"),
@@ -30,6 +32,7 @@ function UpdatePassword() {
             navigate("/login");
           }, 2000);
         }
+        setSpinner(false);
       });
   };
 
@@ -104,7 +107,13 @@ function UpdatePassword() {
         {success !== "" ? <div className="successValue">{success}</div> : ""}
         <br />
         <button data-testid="submit" type="submit" value="Submit" id="submit">
-          Submit
+          {spinner === true ? (
+            <span className="spinner">
+              <i className="fa-solid fa-spinner"></i>
+            </span>
+          ) : (
+            <span>Submit</span>
+          )}
         </button>
         <br />
         <a href="/login" id="back-to-login">
