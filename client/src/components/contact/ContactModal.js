@@ -1,6 +1,6 @@
 function ContactModal({ contact, closeModal }) {
   return (
-    <div className="modal-overlay">
+    <div className="modal-overlay" data-testid="modal-overlay">
       <div className="modal-content">
         <h4>Contact Details</h4>
         {contact.email && <p>Email: {contact.email}</p>}

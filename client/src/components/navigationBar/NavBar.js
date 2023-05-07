@@ -32,7 +32,10 @@ function NavBar() {
               Home
             </a>
           </li>
-          <li className={activeLink === 1 ? "active" : ""}>
+          <li
+            data-testid="jobs-navbar"
+            className={activeLink === 1 ? "active" : ""}
+          >
             <a href="/jobs">
               <span className="nav-icon">
                 <i className="fa-solid fa-suitcase"></i>
@@ -47,7 +50,7 @@ function NavBar() {
                 <i className="fa-solid fa-network-wired"></i>{" "}
               </span>
               <br />
-              Add Job
+              Add Jobs
             </a>
           </li>
           <li className={activeLink === 3 ? "active" : ""}>

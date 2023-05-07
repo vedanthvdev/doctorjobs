@@ -46,7 +46,7 @@ function BackgroundParticles() {
 
   return (
     <div className="particles">
-      <canvas className="object3D" ref={canvasRef} />
+      {/* <canvas className="object3D" ref={canvasRef} /> */}
 
       <Particles
         id="tsparticles"
