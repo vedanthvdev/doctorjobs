@@ -35,6 +35,13 @@
   transform: translateX(-50%);
 }
 
+.recent-jobs-home {
+  position: relative;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .footHead {
   font-size: 18px;
 }
@@ -65,11 +72,17 @@ h5 {
 
 .home-page {
   position: absolute;
-  top: 50%;
+  top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
   max-width: 90%;
+}
+@media screen and (max-width: 768px) {
+  .home-page {
+    top: 70%;
+    transform: translate(-50%, -50%);
+  }
 }
 
 .home-page-title {

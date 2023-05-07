@@ -41,6 +41,7 @@ form {
 #Light .login {
   /* background-image: url("../build/background.jpeg"); */
   background-color: rgb(234, 232, 204);
+  overflow: auto;
 }
 
 /* Company header */

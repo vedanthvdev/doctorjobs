@@ -27,7 +27,11 @@ function JobModal({ filteredJobs, openDeleteConfirmationModal }) {
         <ul id="all-jobs-list">
           {filteredJobs.length > 0 ? (
             filteredJobs.map((job) => (
-              <form className="all-jobs-available" key={job.j_id}>
+              <form
+                className="all-jobs-available"
+                key={job.j_id}
+                data-testid="job-list"
+              >
                 <div className="job-card" id={job.j_id}>
                   <h4>{job.j_title}</h4>
                   <p>{job.j_company}</p>
@@ -56,6 +60,7 @@ function JobModal({ filteredJobs, openDeleteConfirmationModal }) {
                     {openDeleteConfirmationModal && (
                       <button
                         className="deleteJob"
+                        data-testid="delete-job"
                         onClick={(e) =>
                           openDeleteConfirmationModal(e, job.j_id)
                         }
