@@ -1,6 +1,6 @@
 {
-  "name": "doctorjobs",
-  "version": "0.1.0",
+  "name": "Hospital-jobs",
+  "version": "0.2.0",
   "private": true,
   "compilerOptions": {
     "target": "es6",
@@ -30,7 +30,6 @@
     "react-switch": "^7.0.0",
     "react-tsparticles": "^2.9.3",
     "reactjs-social-login": "^2.6.2",
-    "selenium-webdriver": "^4.9.2",
     "three": "^0.150.1",
     "tsparticles": "^2.9.3",
     "web-vitals": "^2.1.4",
@@ -41,7 +40,7 @@
     "start": "set HTTPS=true&&react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --watchAll=false",
-    "sel": "./node_modules/.bin/cucumber-js ./seleniumTests/features/**/*.feature --require ./seleniumTests/steps/**/*.js",
+    "sel": "./node_modules/.bin/cucumber-js --config cucumber-config.js",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -64,6 +63,7 @@
   },
   "devDependencies": {
     "@cucumber/cucumber": "^9.1.2",
-    "@cucumber/pretty-formatter": "^1.0.0"
+    "@cucumber/pretty-formatter": "^1.0.0",
+    "selenium-webdriver": "^4.9.2"
   }
 }

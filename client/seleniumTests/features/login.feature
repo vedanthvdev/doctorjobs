@@ -1,4 +1,4 @@
-@login
+@run_all @login
 Feature: Login
 
 @login_success
