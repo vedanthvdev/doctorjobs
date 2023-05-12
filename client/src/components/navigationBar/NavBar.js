@@ -21,7 +21,7 @@ function NavBar() {
 
   return (
     <div className="navbar">
-      <nav className="navigation-bar">
+      <nav className="navigation_bar" id="navigation_bar">
         <ul>
           <li className={activeLink === 0 ? "active" : ""}>
             <a href="/profile">
