@@ -40,7 +40,7 @@
     "start": "set HTTPS=true&&react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --watchAll=false",
-    "sel": "./node_modules/.bin/cucumber-js --config cucumber-config.js",
+    "sel": "node node_modules/@cucumber/cucumber/bin/cucumber-js --config cucumber-config.js ",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
