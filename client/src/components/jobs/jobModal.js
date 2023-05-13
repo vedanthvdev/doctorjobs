@@ -1,14 +1,27 @@
 import React, { useState } from "react";
 import ContactModal from "../contact/ContactModal";
+import axios from "axios";
+import { ipAddress } from "../../address";
 
 function JobModal({ filteredJobs, openDeleteConfirmationModal }) {
   const [contact, setContact] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
-  const openContactModal = (event, jobContact) => {
+  const openContactModal = (event, jobContact, jobId) => {
     event.preventDefault();
     setContact(jobContact);
     setIsOpen(true);
+    axios
+      .post(ipAddress + "/api/updateclick", {
+        id: jobId,
+      })
+      .then((response) => {
+        if (response.data.message) {
+          console.log("see contact details");
+        } else {
+          return null;
+        }
+      });
   };
 
   const closeModal = () => {
@@ -51,7 +64,11 @@ function JobModal({ filteredJobs, openDeleteConfirmationModal }) {
                       <button
                         className="contact-button"
                         onClick={(e) =>
-                          openContactModal(e, validateCont(job.j_contact))
+                          openContactModal(
+                            e,
+                            validateCont(job.j_contact),
+                            job.j_id
+                          )
                         }
                       >
                         Contact
