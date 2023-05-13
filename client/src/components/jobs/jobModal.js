@@ -17,7 +17,7 @@ function JobModal({ filteredJobs, openDeleteConfirmationModal }) {
       })
       .then((response) => {
         if (response.data.message) {
-          console.log("see contact details");
+          console.log("Update click analysis");
         } else {
           return null;
         }
