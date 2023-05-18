@@ -2,7 +2,7 @@
 
 To run the project:
 
--$ cd Client
+-$ npm install
 -$ npm start
 
 To run unit-tests
@@ -12,7 +12,3 @@ To run e2e selenium tests
 -$ npm run sel
 
 To run a particular feature open the cucumber-config.js and amend the tag
-
-
-
-

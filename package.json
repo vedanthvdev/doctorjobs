@@ -36,11 +36,16 @@
     "zxcvbn": "^4.4.2",
     "zxcvbn-ts": "github:zxcvbn-ts/zxcvbn"
   },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true,
+    "step_definitions": "./cypress/e2e/integration/step_definition/"
+  },
   "scripts": {
-    "start": "set HTTPS=true&&react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --watchAll=false",
     "sel": "node node_modules/@cucumber/cucumber/bin/cucumber-js --config cucumber-config.js ",
+    "e2e": "npx cypress run",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
