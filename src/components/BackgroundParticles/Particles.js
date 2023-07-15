@@ -5,13 +5,10 @@ import * as THREE from "three";
 
 function BackgroundParticles() {
   const particlesInit = useCallback(async (engine) => {
-    console.log(engine);
     await loadFull(engine);
   }, []);
 
-  const particlesLoaded = useCallback((container) => {
-    console.log(container);
-  }, []);
+  const particlesLoaded = useCallback((container) => {}, []);
 
   const canvasRef = useRef();
 
@@ -122,7 +119,7 @@ function BackgroundParticles() {
       />
       <Particles
         id="tsparticles"
-        url="https://foo.bar/particles.json"
+        // url="https://ihospitaljobs.com/particles.json"
         init={particlesInit}
         loaded={particlesLoaded}
       />

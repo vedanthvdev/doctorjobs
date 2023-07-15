@@ -1,0 +1,10 @@
+{
+  "suites": 1,
+  "tests": 2,
+  "passes": 2,
+  "pending": 0,
+  "failures": 0,
+  "start": "2023-05-19T12:39:06.842Z",
+  "duration": 4847,
+  "file": "cypress/e2e/integration/step_definition/login.feature"
+}

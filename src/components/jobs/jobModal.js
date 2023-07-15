@@ -63,6 +63,7 @@ function JobModal({ filteredJobs, openDeleteConfirmationModal }) {
                       validateCont(job.j_contact).email) && (
                       <button
                         className="contact-button"
+                        data-testid="contact_button"
                         onClick={(e) =>
                           openContactModal(
                             e,
