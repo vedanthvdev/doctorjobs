@@ -35,7 +35,7 @@ function ViewMyJobs() {
       });
 
     closeDeleteConfirmationModal();
-    window.location.reload();
+    // window.location.reload();
   };
 
   useEffect(() => {
