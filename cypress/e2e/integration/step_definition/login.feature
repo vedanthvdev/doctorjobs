@@ -16,3 +16,17 @@ Scenario Outline: Succeful
 Examples:
   | username      | password |
   | a.b@gmail.com | a        |
+
+
+@login_fail
+Scenario Outline: fail
+  Given the user is on home page
+  When the user clicks the login button
+  Then the user is on the login page
+  When the user enters "<username>" and "<password>"
+  And the user clicks submit
+
+
+Examples:
+  | username      | password |
+  | a.b@gmail.com | a        |
