@@ -69,6 +69,10 @@ describe("ViewMyJobs", () => {
 });
 
 describe("JobModal", () => {
+  beforeEach(() => {
+    axios.post.mockResolvedValue({ data: { message: "ok" } });
+  });
+
   it("renders job details", () => {
     const jobs = [
       {
